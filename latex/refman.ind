@@ -1,0 +1,127 @@
+\begin{theindex}
+
+  \item {\_listMacOp}, \hyperpage{5}
+  \item {\_listMachine}, \hyperpage{5}
+  \item {\_listOperation}, \hyperpage{6}
+
+  \indexspace
+
+  \item {avg\_time}
+    \subitem {functions.c}, \hyperpage{9}
+
+  \indexspace
+
+  \item {change\_operation}
+    \subitem {functions.c}, \hyperpage{9}
+
+  \indexspace
+
+  \item {exist\_mac}
+    \subitem {functions.c}, \hyperpage{9}
+  \item {exist\_MacOp}
+    \subitem {functions.c}, \hyperpage{10}
+  \item {exist\_op}
+    \subitem {functions.c}, \hyperpage{10}
+
+  \indexspace
+
+  \item {freeMachines}
+    \subitem {functions.c}, \hyperpage{11}
+  \item {freeMacOp}
+    \subitem {functions.c}, \hyperpage{11}
+  \item {freeOperations}
+    \subitem {functions.c}, \hyperpage{11}
+  \item {functions.c}, \hyperpage{7}
+    \subitem {avg\_time}, \hyperpage{9}
+    \subitem {change\_operation}, \hyperpage{9}
+    \subitem {exist\_mac}, \hyperpage{9}
+    \subitem {exist\_MacOp}, \hyperpage{10}
+    \subitem {exist\_op}, \hyperpage{10}
+    \subitem {freeMachines}, \hyperpage{11}
+    \subitem {freeMacOp}, \hyperpage{11}
+    \subitem {freeOperations}, \hyperpage{11}
+    \subitem {get\_max\_time}, \hyperpage{11}
+    \subitem {head\_insert\_machine}, \hyperpage{12}
+    \subitem {head\_insert\_macop}, \hyperpage{12}
+    \subitem {head\_insert\_operation}, \hyperpage{12}
+    \subitem {insert\_operation}, \hyperpage{13}
+    \subitem {max\_time}, \hyperpage{13}
+    \subitem {menu\_job}, \hyperpage{14}
+    \subitem {min\_time}, \hyperpage{14}
+    \subitem {readMachines}, \hyperpage{14}
+    \subitem {readMacOp}, \hyperpage{15}
+    \subitem {readOperations}, \hyperpage{15}
+    \subitem {remove\_MacOp}, \hyperpage{15}
+    \subitem {remove\_operation}, \hyperpage{16}
+    \subitem {showMachineList}, \hyperpage{16}
+    \subitem {showMacOpList}, \hyperpage{16}
+    \subitem {showOperationList}, \hyperpage{17}
+    \subitem {writeMachines}, \hyperpage{17}
+    \subitem {writeMacOp}, \hyperpage{17}
+    \subitem {writeOperations}, \hyperpage{17}
+
+  \indexspace
+
+  \item {get\_max\_time}
+    \subitem {functions.c}, \hyperpage{11}
+
+  \indexspace
+
+  \item {head\_insert\_machine}
+    \subitem {functions.c}, \hyperpage{12}
+  \item {head\_insert\_macop}
+    \subitem {functions.c}, \hyperpage{12}
+  \item {head\_insert\_operation}
+    \subitem {functions.c}, \hyperpage{12}
+
+  \indexspace
+
+  \item {insert\_operation}
+    \subitem {functions.c}, \hyperpage{13}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.c}, \hyperpage{19}
+  \item {main.c}, \hyperpage{18}
+    \subitem {main}, \hyperpage{19}
+  \item {max\_time}
+    \subitem {functions.c}, \hyperpage{13}
+  \item {menu\_job}
+    \subitem {functions.c}, \hyperpage{14}
+  \item {min\_time}
+    \subitem {functions.c}, \hyperpage{14}
+
+  \indexspace
+
+  \item {readMachines}
+    \subitem {functions.c}, \hyperpage{14}
+  \item {readMacOp}
+    \subitem {functions.c}, \hyperpage{15}
+  \item {readOperations}
+    \subitem {functions.c}, \hyperpage{15}
+  \item {remove\_MacOp}
+    \subitem {functions.c}, \hyperpage{15}
+  \item {remove\_operation}
+    \subitem {functions.c}, \hyperpage{16}
+
+  \indexspace
+
+  \item {showMachineList}
+    \subitem {functions.c}, \hyperpage{16}
+  \item {showMacOpList}
+    \subitem {functions.c}, \hyperpage{16}
+  \item {showOperationList}
+    \subitem {functions.c}, \hyperpage{17}
+  \item {structs.h}, \hyperpage{19}
+
+  \indexspace
+
+  \item {writeMachines}
+    \subitem {functions.c}, \hyperpage{17}
+  \item {writeMacOp}
+    \subitem {functions.c}, \hyperpage{17}
+  \item {writeOperations}
+    \subitem {functions.c}, \hyperpage{17}
+
+\end{theindex}

@@ -1,0 +1,43 @@
+\hypertarget{functions_8h_source}{}\doxysection{functions.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{structs_8h}{structs.h}}"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \mbox{\hyperlink{struct__list_machine}{Machine}} *\mbox{\hyperlink{functions_8c_a1a728f4bc5eba47f5f92d604a26144f5}{readMachines}}(\mbox{\hyperlink{struct__list_machine}{Machine}} *listMachine);}
+\DoxyCodeLine{15 \mbox{\hyperlink{struct__list_machine}{Machine}} *\mbox{\hyperlink{functions_8c_afb6bca502fe845644844f718ce5b9568}{writeMachines}}(\mbox{\hyperlink{struct__list_machine}{Machine}} *listMachine);}
+\DoxyCodeLine{16 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_aab3c536ad2190cd3c9bf69bc6cbb0fb5}{freeMachines}}(\mbox{\hyperlink{struct__list_machine}{Machine}} *list);}
+\DoxyCodeLine{17 \mbox{\hyperlink{struct__list_machine}{Machine}} *\mbox{\hyperlink{functions_8c_ac7d366047d0b91b94f9b351bc09f07d6}{head\_insert\_machine}}(\mbox{\hyperlink{struct__list_machine}{Machine}} *list, \mbox{\hyperlink{struct__list_machine}{Machine}} *aux);}
+\DoxyCodeLine{18 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a0cf21be0386e03eef39084a86c657b99}{showMachineList}}(\mbox{\hyperlink{struct__list_machine}{Machine}} *list);}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \mbox{\hyperlink{struct__list_mac_op}{MacOp}} *\mbox{\hyperlink{functions_8c_a839ecd00035da6045bf269153c4abb43}{readMacOp}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} *listMacOp);}
+\DoxyCodeLine{21 \mbox{\hyperlink{struct__list_mac_op}{MacOp}} *\mbox{\hyperlink{functions_8c_a15bccdee40ca04d46e4c5e99a82da71d}{writeMacOp}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} *listMacOp);}
+\DoxyCodeLine{22 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_aa88a9875fc6d5420c2bc7d3df4074f5d}{freeMacOp}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} *list);}
+\DoxyCodeLine{23 \mbox{\hyperlink{struct__list_mac_op}{MacOp}} *\mbox{\hyperlink{functions_8c_abb38c511ad518f58082d988119d30200}{head\_insert\_macop}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} *list, \mbox{\hyperlink{struct__list_mac_op}{MacOp}} *aux);}
+\DoxyCodeLine{24 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a2b9ccff8d1341e22c289ea978041cb43}{showMacOpList}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} *list);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \mbox{\hyperlink{struct__list_operation}{Operation}} *\mbox{\hyperlink{functions_8c_a6f86fea4b7c8bae484e2678dbf1e4a39}{readOperations}}(\mbox{\hyperlink{struct__list_operation}{Operation}} *listOperation);}
+\DoxyCodeLine{27 \mbox{\hyperlink{struct__list_operation}{Operation}} *\mbox{\hyperlink{functions_8c_a73593281be7e9a35fc9a7e9e648e6e33}{writeOperations}}(\mbox{\hyperlink{struct__list_operation}{Operation}} *listOperation);}
+\DoxyCodeLine{28 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_ab53d70bc62c0f26dda8ed22f6a693ce4}{freeOperations}}(\mbox{\hyperlink{struct__list_operation}{Operation}} *list);}
+\DoxyCodeLine{29 \mbox{\hyperlink{struct__list_operation}{Operation}} *\mbox{\hyperlink{functions_8c_ae81d5ede4e20e49e05035592105167ce}{head\_insert\_operation}}(\mbox{\hyperlink{struct__list_operation}{Operation}} *list, \mbox{\hyperlink{struct__list_operation}{Operation}} *aux);}
+\DoxyCodeLine{30 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a676ff0891d9c43afe63295a82d9cf479}{showOperationList}}(\mbox{\hyperlink{struct__list_operation}{Operation}} *list);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a80a0dc1ef501c142938b3c9b41e09a3f}{interface\_job}}();}
+\DoxyCodeLine{33 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_ae190ca9d045f8d0d39d5ff566b3f88a4}{menu\_job}}(\mbox{\hyperlink{struct__list_operation}{Operation}} **listOperation, \mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \mbox{\hyperlink{struct__list_machine}{Machine}} **listMachine);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a211c7839f8147e6ef5aeed9d8b7e6836}{remove\_MacOp}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \textcolor{keywordtype}{int} id\_op);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a2f6a75f06503a9fe9ea782a1e3ac76c5}{insert\_operation}}(\mbox{\hyperlink{struct__list_operation}{Operation}} **listOperation, \mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \mbox{\hyperlink{struct__list_machine}{Machine}} *listMachine);}
+\DoxyCodeLine{38 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_af69688e0f583bbee88b8d120d331f537}{remove\_operation}}(\mbox{\hyperlink{struct__list_operation}{Operation}} **listOperation, \mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \textcolor{keywordtype}{int} id\_op);}
+\DoxyCodeLine{39 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a42328cfc571ce3f2eb6f9e275adedcad}{change\_operation}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \mbox{\hyperlink{struct__list_machine}{Machine}} *listMachine, \textcolor{keywordtype}{int} id\_op);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a0f2f54006bc5dc7d98142dc015f7f163}{min\_time}}(\mbox{\hyperlink{struct__list_operation}{Operation}} **listOperation, \mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \mbox{\hyperlink{struct__list_machine}{Machine}} **listMachine);}
+\DoxyCodeLine{42 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a11351ea22701266be7a63ae5011ec4fc}{max\_time}}(\mbox{\hyperlink{struct__list_operation}{Operation}} **listOperation, \mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \mbox{\hyperlink{struct__list_machine}{Machine}} **listMachine);}
+\DoxyCodeLine{43 \textcolor{keywordtype}{float} \mbox{\hyperlink{functions_8c_a5b29fb7edde4f31a16904e40d245f776}{avg\_time}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \mbox{\hyperlink{struct__list_machine}{Machine}} **listMachine, \textcolor{keywordtype}{int} id\_op);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_abed4b6f8f26506c43f56dac6cadf6198}{exist\_mac}}(\mbox{\hyperlink{struct__list_machine}{Machine}} **listMachine, \textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{46 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a50a7cc4a836ee01fc514c84003ed6b4b}{exist\_op}}(\mbox{\hyperlink{struct__list_operation}{Operation}} **listOperation, \textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{47 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a3d7cae2f74c05450fc418d5648d0e065}{exist\_MacOp}}(\mbox{\hyperlink{struct__list_mac_op}{MacOp}} **listMacOp, \textcolor{keywordtype}{int} id\_mac, \textcolor{keywordtype}{int} id\_op);}
+\DoxyCodeLine{48 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a73fd98cd1637bc9a3551d362d05afcb0}{get\_max\_time}}(\mbox{\hyperlink{struct__list_machine}{Machine}} **listMachine);}
+
+\end{DoxyCode}
