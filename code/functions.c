@@ -4,9 +4,9 @@
  * @brief Funções do programa
  * @version 0.1
  * @date 2022-03-26
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include <stdio.h>
@@ -35,7 +35,7 @@ Machine *read_machines(Machine *list_machines)
 
     while (!feof(file))
     {
-        fscanf(file, "%d\t%d\n", &aux->id_mac, &aux->time);
+        fscanf(file, "%d\n", &aux->id_mac);
         list_machines = head_insert_machine(list_machines, aux);
     }
 
@@ -63,7 +63,7 @@ Machine *write_machines(Machine *list_machines)
 
     while (list_machines)
     {
-        fprintf(file, "%d\t%d\n", list_machines->id_mac, list_machines->time);
+        fprintf(file, "%d\n", list_machines->id_mac);
         list_machines = list_machines->next;
     }
 
@@ -91,7 +91,7 @@ MacOp *read_macops(MacOp *list_macops)
 
     while (!feof(file))
     {
-        fscanf(file, "%d\t%d\n", &aux->id_op, &aux->id_mac);
+        fscanf(file, "%d\t%d\t%d\n", &aux->id_op, &aux->id_mac, &aux->time);
         list_macops = head_insert_macop(list_macops, aux);
     }
 
@@ -119,7 +119,7 @@ MacOp *write_macops(MacOp *list_macops)
 
     while (list_macops)
     {
-        fprintf(file, "%d\t%d\n", list_macops->id_op, list_macops->id_mac);
+        fprintf(file, "%d\t%d\t%d\n", list_macops->id_op, list_macops->id_mac, list_macops->time);
         list_macops = list_macops->next;
     }
 
@@ -256,7 +256,6 @@ Machine *head_insert_machine(Machine *list_machines, Machine *aux)
 
     // Inserição dos valores a armazenar
     tmp->id_mac = aux->id_mac;
-    tmp->time = aux->time;
 
     // Novo nodo aponta para início da lista
     tmp->next = list_machines;
@@ -283,6 +282,7 @@ MacOp *head_insert_macop(MacOp *list_macops, MacOp *aux)
     // Inserção dos valores a armazenar
     tmp->id_mac = aux->id_mac;
     tmp->id_op = aux->id_op;
+    tmp->time = aux->time;
 
     // Novo nodo aponta para início da lista
     tmp->next = list_macops;
@@ -412,19 +412,19 @@ int exist_macop(MacOp **list_macops, int id_machine, int id_operation)
  * @param list_machines lista das máquinas
  * @return int
  */
-int get_max_time(Machine **list_machines)
+int get_max_time(MacOp **list_macops)
 {
     int max = 0;
-    Machine *head_mac = malloc(sizeof(Machine));
-    head_mac = *list_machines;
+    MacOp *head_macop = malloc(sizeof(MacOp));
+    head_macop = *list_macops;
 
-    while (head_mac)
+    while (head_macop)
     {
-        if (head_mac->time > max)
+        if (head_macop->time > max)
         {
-            max = head_mac->time;
+            max = head_macop->time;
         }
-        head_mac = head_mac->next;
+        head_macop = head_macop->next;
     }
 
     return max;
@@ -446,7 +446,7 @@ void show_machines(Machine *list_machines)
     printf("-------------------------\n");
     while (list_machines)
     {
-        printf("ID: %d / TIME: %d\n", list_machines->id_mac, list_machines->time);
+        printf("ID: %d\n", list_machines->id_mac);
         list_machines = list_machines->next;
     }
     printf("-------------------------\n");
@@ -465,7 +465,7 @@ void show_macops(MacOp *list_macops)
     printf("----------------------------------\n");
     while (list_macops)
     {
-        printf("ID Operacao: %d / ID Maquina: %d\n", list_macops->id_op, list_macops->id_mac);
+        printf("ID Operacao: %d / ID Maquina: %d / Time: %d\n", list_macops->id_op, list_macops->id_mac, list_macops->time);
         list_macops = list_macops->next;
     }
     printf("----------------------------------\n");
@@ -495,7 +495,7 @@ void show_operations(Operation *list_operations)
 
 /**
  * @brief Remoção de uma operação da lista intermedia MacOp
- * 
+ *
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param id_operation id da operação a ser removida
  */
@@ -548,8 +548,10 @@ void insert_operation(Operation **list_operations, MacOp **list_macops, Machine 
     aux_op->id_op = head_op->id_op + 1;
 
     show_machines(list_machines);
-    printf("\n\n(Insira numero negativo para terminar nao associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
+    printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
     scanf("%d", &aux_macOp->id_mac);
+    printf("\nInsira o tempo:");
+    scanf("%d", &aux_macOp->time);
 
     if (exist_machine(&list_machines, aux_macOp->id_mac))
     {
@@ -564,7 +566,7 @@ void insert_operation(Operation **list_operations, MacOp **list_macops, Machine 
     while (aux_macOp->id_mac >= 0)
     {
         show_machines(list_machines);
-        printf("\n\n(Insira numero negativo para terminar nao associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
+        printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
         scanf("%d", &aux_macOp->id_mac);
 
         if (exist_machine(&list_machines, aux_macOp->id_mac))
@@ -625,7 +627,6 @@ void remove_operation(Operation **list_operations, MacOp **list_macops, int id_o
                 head_op->previous->next = head_op->next;
             else
                 *list_operations = head_op->next;
-
         }
 
         head_op = head_op->next;
@@ -651,7 +652,7 @@ void change_operation(MacOp **list_macops, Machine *list_machines, int id_operat
     aux_macop->id_op = id_operation;
 
     show_machines(list_machines);
-    printf("\n\n(Insira numero negativo para terminar nao associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
+    printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
     scanf("%d", &aux_macop->id_mac);
 
     if (exist_machine(&list_machines, aux_macop->id_mac))
@@ -667,7 +668,7 @@ void change_operation(MacOp **list_macops, Machine *list_machines, int id_operat
     while (aux_macop->id_mac >= 0)
     {
         show_machines(list_machines);
-        printf("\n\n(Insira numero negativo para terminar nao associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
+        printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
         scanf("%d", &aux_macop->id_mac);
 
         if (exist_machine(&list_machines, aux_macop->id_mac))
@@ -690,27 +691,18 @@ void change_operation(MacOp **list_macops, Machine *list_machines, int id_operat
  * @param list_machines lista das máquinas
  * @param id_operation id da operação
  */
-float avg_time(MacOp **list_macops, Machine **list_machines, int id_operation)
+float avg_time(MacOp **list_macops, int id_operation)
 {
     int sum = 0, count = 0;
     MacOp *head_macop = malloc(sizeof(MacOp));
-    Machine *head_mac = malloc(sizeof(Machine));
 
     head_macop = *list_macops;
     while (head_macop)
     {
         if (head_macop->id_op == id_operation)
         {
-            head_mac = *list_machines;
-            while (head_mac)
-            {
-                if (head_macop->id_mac == head_mac->id_mac)
-                {
-                    sum += head_mac->time;
-                    count++;
-                }
-                head_mac = head_mac->next;
-            }
+            sum += head_macop->time;
+            count++;
         }
         head_macop = head_macop->next;
     }
@@ -728,34 +720,23 @@ float avg_time(MacOp **list_macops, Machine **list_machines, int id_operation)
  *
  * @param list_operations lista das operações
  * @param list_macops lista intermedia entre as operações e as máquinas
- * @param list_machines lista das máquinas
  */
-int min_time(Operation **list_operations, MacOp **list_macops, Machine **list_machines)
+int min_time(Operation **list_operations, MacOp **list_macops)
 {
     int sum = 0, min;
     Operation *head_op = malloc(sizeof(Operation));
     MacOp *head_macop = malloc(sizeof(MacOp));
-    Machine *head_mac = malloc(sizeof(Machine));
 
     head_op = *list_operations;
     while (head_op)
     {
-        min = get_max_time(list_machines);
+        min = get_max_time(list_macops);
         head_macop = *list_macops;
         while (head_macop)
         {
-            if (head_op->id_op == head_macop->id_op)
+            if (head_op->id_op == head_macop->id_op && head_macop->time < min)
             {
-                head_mac = *list_machines;
-                while (head_mac)
-                {
-                    if (head_macop->id_mac == head_mac->id_mac && head_mac->time < min)
-                    {
-                        min = head_mac->time;
-                    }
-
-                    head_mac = head_mac->next;
-                }
+                min = head_macop->time;
             }
             head_macop = head_macop->next;
         }
@@ -772,14 +753,12 @@ int min_time(Operation **list_operations, MacOp **list_macops, Machine **list_ma
  *
  * @param list_operations lista das operações
  * @param list_macops lista intermedia entre as operações e as máquinas
- * @param list_machines lista das máquinas
  */
-int max_time(Operation **list_operations, MacOp **list_macops, Machine **list_machines)
+int max_time(Operation **list_operations, MacOp **list_macops)
 {
     int sum = 0, max;
     Operation *head_op = malloc(sizeof(Operation));
     MacOp *head_macop = malloc(sizeof(MacOp));
-    Machine *head_mac = malloc(sizeof(Machine));
 
     head_op = *list_operations;
     while (head_op)
@@ -788,18 +767,9 @@ int max_time(Operation **list_operations, MacOp **list_macops, Machine **list_ma
         head_macop = *list_macops;
         while (head_macop)
         {
-            if (head_op->id_op == head_macop->id_op)
+            if (head_op->id_op == head_macop->id_op && head_macop->time > max)
             {
-                head_mac = *list_machines;
-                while (head_mac)
-                {
-                    if (head_macop->id_mac == head_mac->id_mac && head_mac->time > max)
-                    {
-                        max = head_mac->time;
-                    }
-
-                    head_mac = head_mac->next;
-                }
+                max = head_macop->time;
             }
             head_macop = head_macop->next;
         }
@@ -905,7 +875,7 @@ void menu_job(Operation **list_operations, MacOp **list_macops, Machine **list_m
             system("cls");
             {
                 show_operations(*list_operations);
-                printf("\n\nTempo minimo executado pelo job: %d\n", min_time(list_operations, list_macops, list_machines));
+                printf("\n\nTempo minimo executado pelo job: %d\n", min_time(list_operations, list_macops));
                 system("pause");
             }
             system("cls");
@@ -915,7 +885,7 @@ void menu_job(Operation **list_operations, MacOp **list_macops, Machine **list_m
             system("cls");
             {
                 show_operations(*list_operations);
-                printf("\n\nTempo maximo executado pelo job: %d\n", max_time(list_operations, list_macops, list_machines));
+                printf("\n\nTempo maximo executado pelo job: %d\n", max_time(list_operations, list_macops));
                 system("pause");
             }
             system("cls");
@@ -930,7 +900,7 @@ void menu_job(Operation **list_operations, MacOp **list_macops, Machine **list_m
                 scanf("%d", &id_op);
                 if (exist_operation(list_operations, id_op))
                 {
-                    printf("\n\nTempo medio executado pela operacao %d: %.2f\n", id_op, avg_time(list_macops, list_machines, id_op));
+                    printf("\n\nTempo medio executado pela operacao %d: %.2f\n", id_op, avg_time(list_macops, id_op));
                 }
                 else
                     printf("\nID inserido inexistente\n");

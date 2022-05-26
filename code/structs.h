@@ -15,7 +15,7 @@
  */
 typedef struct list_machine
 {
-    int time, id_mac;
+    int id_mac;
     struct list_machine *next, *previous;
 } Machine;
 
@@ -25,7 +25,7 @@ typedef struct list_machine
  */
 typedef struct list_macop
 {
-    int id_op, id_mac;
+    int id_op, id_mac, time;
     struct list_macop *next, *previous;
 } MacOp;
 

@@ -36,11 +36,11 @@ void change_operation(MacOp **listMacOp, Machine *listMachine, int id_op);
 void interface_job();
 void menu_job(Operation **listOperation, MacOp **listMacOp, Machine **listMachine);
 
-int min_time(Operation **listOperation, MacOp **listMacOp, Machine **listMachine);
-int max_time(Operation **listOperation, MacOp **listMacOp, Machine **listMachine);
-float avg_time(MacOp **listMacOp, Machine **listMachine, int id_op);
+int min_time(Operation **list_operations, MacOp **list_macops);
+int max_time(Operation **list_operations, MacOp **list_macops);
+float avg_time(MacOp **list_macops, int id_operation);
 
 int exist_machine(Machine **listMachine, int id);
 int exist_operation(Operation **listOperation, int id);
 int exist_macop(MacOp **listMacOp, int id_mac, int id_op);
-int get_max_time(Machine **listMachine);
+int get_max_time(MacOp **list_macops);
