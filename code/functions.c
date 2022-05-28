@@ -183,6 +183,118 @@ Operation *write_operations(Operation *list_operations)
     return list_operations;
 }
 
+/**
+ * @brief Leitura do ficheiro opjobs.txt e armazenamento em memória
+ * 
+ * @param list_opjobs Lista intermedia que contem id das operações com id dos jobs
+ * @return OpJob* 
+ */
+OpJob *read_opjobs(OpJob *list_opjobs)
+{
+    FILE *file = fopen("opjobs.txt", "r");
+    OpJob *aux = (OpJob *)malloc(sizeof(OpJob));
+
+    if (file == NULL)
+    {
+        printf("Ficheiro não pode ser aberto!\n");
+        getchar();
+        return list_opjobs;
+    }
+
+    while (!feof(file))
+    {
+        fscanf(file, "%d\t%d\n", &aux->id_job, &aux->id_op);
+        list_opjobs = head_insert_opjob(list_opjobs, aux);
+    }
+
+    free(aux);
+    fclose(file);
+    return list_opjobs;
+}
+
+/**
+ * @brief Escrita do ficheiro opjobs.txt e armazenamento em memória
+ * 
+ * @param list_opjobs 
+ * @return OpJob* 
+ */
+OpJob *write_opjobs(OpJob *list_opjobs)
+{
+    FILE *file = fopen("opjobs.txt", "w");
+
+    if (file == NULL)
+    {
+        printf("Ficheiro não pode ser aberto!\n");
+        getchar();
+        return list_opjobs;
+    }
+
+    while (list_opjobs)
+    {
+        fprintf(file, "%d\t%d\n", list_opjobs->id_job, list_opjobs->id_op);
+        list_opjobs = list_opjobs->next;
+    }
+
+    fclose(file);
+    return list_opjobs;
+}
+
+/**
+ * @brief Leitura do ficheiro jobs.txt e armazenamento em memória
+ * 
+ * @param list_jobs Lista intermedia que contem jobs
+ * @return Job* 
+ */
+Job *read_jobs(Job *list_jobs)
+{
+    FILE *file = fopen("jobs.txt", "r");
+    Job *aux = (Job *)malloc(sizeof(Job));
+
+    if (file == NULL)
+    {
+        printf("Ficheiro não pode ser aberto!\n");
+        getchar();
+        return list_jobs;
+    }
+
+    while (!feof(file))
+    {
+        fscanf(file, "%d\n", &aux->id_job);
+        list_jobs = head_insert_job(list_jobs, aux);
+    }
+
+    free(aux);
+    fclose(file);
+    return list_jobs;
+}
+
+/**
+ * @brief Escrita do ficheiro opjobs.txt e armazenamento em memória
+ * 
+ * @param list_opjobs 
+ * @return OpJob* 
+ */
+Job *write_jobs(Job *list_jobs)
+{
+    FILE *file = fopen("jobs.txt", "w");
+
+    if (file == NULL)
+    {
+        printf("Ficheiro não pode ser aberto!\n");
+        getchar();
+        return list_jobs;
+    }
+
+    while (list_jobs)
+    {
+        fprintf(file, "%d\n", list_jobs->id_job);
+        list_jobs = list_jobs->next;
+    }
+
+    fclose(file);
+    return list_jobs;
+}
+
 #pragma endregion
 
 #pragma region FREE
@@ -345,6 +457,57 @@ Operation *head_insert_operation(Operation *list_operations, Operation *aux)
 
     // Novo nodo aponta para início da lista
     tmp->next = list_operations;
+    if (tmp->next)
+        tmp->next->previous = tmp;
+    tmp->previous = NULL;
+
+    // Retornar o tmp, pois este agora é o início da lista
+    return tmp;
+}
+
+/**
+ * @brief Inserção á cabeça na lista intermedia opjobs
+ * 
+ * @param list_opjobs lista intermedia opjobs
+ * @param aux Lista auxiliar
+ * @return OpJob* 
+ */
+OpJob *head_insert_opjob(OpJob *list_opjobs, OpJob *aux)
+{
+    // Alocar memoria para nodo
+    OpJob *tmp = (OpJob *)malloc(sizeof(OpJob));
+
+    // Inserir valores a guardar
+    tmp->id_job = aux->id_job;
+    tmp->id_op = aux->id_op;
+
+    // Novo nodo aponta para início da lista
+    tmp->next = list_opjobs;
+    if (tmp->next)
+        tmp->next->previous = tmp;
+    tmp->previous = NULL;
+
+    // Retornar o tmp, pois este agora é o início da lista
+    return tmp;
+}
+
+/**
+ * @brief Inserção á cabeça na lista dos jobs
+ * 
+ * @param list_jobs Lista dos jobs
+ * @param aux Lista auxiliar
+ * @return Job* 
+ */
+Job *head_insert_job(Job *list_jobs, Job *aux)
+{
+    // Alocar memoria para nodo
+    Job *tmp = (Job *)malloc(sizeof(Job));
+
+    // Inserir valores a guardar
+    tmp->id_job = aux->id_job;
+
+    // Novo nodo aponta para início da lista
+    tmp->next = list_jobs;
     if (tmp->next)
         tmp->next->previous = tmp;
     tmp->previous = NULL;
