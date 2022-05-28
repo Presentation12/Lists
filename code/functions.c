@@ -238,6 +238,40 @@ void free_operations(Operation *list_operations)
     }
 }
 
+/**
+ * @brief Desalocar memória ocupada pela lista intermedia opjobs
+ *
+ * @param list_opjobs lista intermedia de operações e jobs
+ */
+void free_opjobs(OpJob *list_opjobs)
+{
+    OpJob *aux = malloc(sizeof(OpJob));
+
+    while (list_opjobs)
+    {
+        aux = list_opjobs;
+        list_opjobs = list_opjobs->next;
+        free(aux);
+    }
+}
+
+/**
+ * @brief Desalocar memória ocupada pela lista de jobs
+ *
+ * @param list_job lista de jobs
+ */
+void free_jobs(Job *list_job)
+{
+    Job *aux = malloc(sizeof(Job));
+
+    while (list_job)
+    {
+        aux = list_job;
+        list_job = list_job->next;
+        free(aux);
+    }
+}
+
 #pragma endregion
 
 #pragma region HEAD_INSERTS
@@ -550,18 +584,25 @@ void insert_operation(Operation **list_operations, MacOp **list_macops, Machine 
     show_machines(list_machines);
     printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
     scanf("%d", &aux_macOp->id_mac);
-    printf("\nInsira o tempo:");
-    scanf("%d", &aux_macOp->time);
 
-    if (exist_machine(&list_machines, aux_macOp->id_mac))
+    if (aux_macOp->id_mac >= 0)
     {
-        if (exist_macop(list_macops, aux_macOp->id_mac, aux_macOp->id_op))
-            printf("\nEsta combinação ja existe\nNao inserido\n");
-        else
-            *list_macops = head_insert_macop(head_macop, aux_macOp);
+        printf("\nInsira o tempo:");
+        scanf("%d", &aux_macOp->time);
+
+        if (exist_machine(&list_machines, aux_macOp->id_mac))
+        {
+            if (exist_macop(list_macops, aux_macOp->id_mac, aux_macOp->id_op))
+                printf("\nEsta combinacaoo ja existe\nNao inserido\n");
+            else
+            {
+                *list_macops = head_insert_macop(head_macop, aux_macOp);
+                head_macop = *list_macops;
+            }
+        }
+        else if (aux_macOp->id_mac >= 0)
+            printf("Essa maquina nao existe");
     }
-    else if (aux_macOp->id_mac >= 0)
-        printf("Essa maquina nao existe");
 
     while (aux_macOp->id_mac >= 0)
     {
@@ -569,15 +610,24 @@ void insert_operation(Operation **list_operations, MacOp **list_macops, Machine 
         printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
         scanf("%d", &aux_macOp->id_mac);
 
-        if (exist_machine(&list_machines, aux_macOp->id_mac))
+        if (aux_macOp->id_mac >= 0)
         {
-            if (exist_macop(list_macops, aux_macOp->id_mac, aux_macOp->id_op))
-                printf("\nEsta combinação ja existe\nNao inserido\n");
-            else
-                *list_macops = head_insert_macop(head_macop, aux_macOp);
+            printf("\nInsira o tempo:");
+            scanf("%d", &aux_macOp->time);
+
+            if (exist_machine(&list_machines, aux_macOp->id_mac))
+            {
+                if (exist_macop(list_macops, aux_macOp->id_mac, aux_macOp->id_op))
+                    printf("\nEsta combinação ja existe\nNao inserido\n");
+                else
+                {
+                    *list_macops = head_insert_macop(head_macop, aux_macOp);
+                    head_macop = *list_macops;
+                }
+            }
+            else if (aux_macOp->id_mac >= 0)
+                printf("Essa maquina nao existe");
         }
-        else if (aux_macOp->id_mac >= 0)
-            printf("Essa maquina nao existe");
     }
 
     *list_operations = head_insert_operation(head_op, aux_op);

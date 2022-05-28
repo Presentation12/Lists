@@ -33,6 +33,10 @@ void insert_operation(Operation **listOperation, MacOp **listMacOp, Machine *lis
 void remove_operation(Operation **listOperation, MacOp **listMacOp, int id_op);
 void change_operation(MacOp **listMacOp, Machine *listMachine, int id_op);
 
+void free_opjobs(OpJob *list_opjobs);
+
+void free_jobs(Job *list_job);
+
 void interface_job();
 void menu_job(Operation **listOperation, MacOp **listMacOp, Machine **listMachine);
 
