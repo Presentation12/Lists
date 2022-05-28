@@ -14,7 +14,7 @@
 // Funções machines
 Machine *read_machines(Machine *listMachine);
 Machine *write_machines(Machine *listMachine);
-void free_machines(Machine *list);
+int free_machines(Machine *list);
 Machine *head_insert_machine(Machine *list, Machine *aux);
 void show_machines(Machine *list);
 int exist_machine(Machine **listMachine, int id);
@@ -22,31 +22,31 @@ int exist_machine(Machine **listMachine, int id);
 // Funções macops
 MacOp *read_macops(MacOp *listMacOp);
 MacOp *write_macops(MacOp *listMacOp);
-void free_macops(MacOp *list);
+int free_macops(MacOp *list);
 MacOp *head_insert_macop(MacOp *list, MacOp *aux);
 void show_macops(MacOp *list);
-void remove_macop(MacOp **listMacOp, int id_op);
+MacOp *remove_macop(MacOp *list_macops, int id_operation);
 int exist_macop(MacOp **listMacOp, int id_mac, int id_op);
 
 // Funções operations
 Operation *read_operations(Operation *listOperation);
 Operation *write_operations(Operation *listOperation);
-void free_operations(Operation *list);
+int free_operations(Operation *list);
 Operation *head_insert_operation(Operation *list, Operation *aux);
 void show_operations(Operation *list);
-void insert_operation(Operation **listOperation, MacOp **listMacOp, Machine *listMachine);
-void remove_operation(Operation **listOperation, MacOp **listMacOp, int id_op);
+Operation *insert_operation(Operation *listOperation, MacOp **listMacOp, Machine *listMachine);
+Operation *remove_operation(Operation *list_operations, MacOp **list_macops, int id_operation);
 void change_operation(MacOp **listMacOp, Machine *listMachine, int id_op);
 int exist_operation(Operation **listOperation, int id);
 
 // Funções opjobs
-void free_opjobs(OpJob *list_opjobs);
+int free_opjobs(OpJob *list_opjobs);
 OpJob *read_opjobs(OpJob *list_opjobs);
 OpJob *write_opjobs(OpJob *list_opjobs);
 OpJob *head_insert_opjob(OpJob *list_opjobs, OpJob *aux);
 
 // Funções jobs
-void free_jobs(Job *list_job);
+int free_jobs(Job *list_job);
 Job *read_jobs(Job *list_jobs);
 Job *write_jobs(Job *list_jobs);
 Job *head_insert_job(Job *list_jobs, Job *aux);

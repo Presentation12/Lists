@@ -184,9 +184,9 @@ Operation *write_operations(Operation *list_operations)
 
 /**
  * @brief Leitura do ficheiro opjobs.txt e armazenamento em memória
- * 
+ *
  * @param list_opjobs Lista intermedia que contem id das operações com id dos jobs
- * @return OpJob* 
+ * @return OpJob*
  */
 OpJob *read_opjobs(OpJob *list_opjobs)
 {
@@ -213,9 +213,9 @@ OpJob *read_opjobs(OpJob *list_opjobs)
 
 /**
  * @brief Escrita do ficheiro opjobs.txt e armazenamento em memória
- * 
- * @param list_opjobs 
- * @return OpJob* 
+ *
+ * @param list_opjobs
+ * @return OpJob*
  */
 OpJob *write_opjobs(OpJob *list_opjobs)
 {
@@ -240,9 +240,9 @@ OpJob *write_opjobs(OpJob *list_opjobs)
 
 /**
  * @brief Leitura do ficheiro jobs.txt e armazenamento em memória
- * 
+ *
  * @param list_jobs Lista intermedia que contem jobs
- * @return Job* 
+ * @return Job*
  */
 Job *read_jobs(Job *list_jobs)
 {
@@ -269,9 +269,9 @@ Job *read_jobs(Job *list_jobs)
 
 /**
  * @brief Escrita do ficheiro opjobs.txt e armazenamento em memória
- * 
- * @param list_opjobs 
- * @return OpJob* 
+ *
+ * @param list_opjobs
+ * @return OpJob*
  */
 Job *write_jobs(Job *list_jobs)
 {
@@ -481,10 +481,10 @@ Operation *head_insert_operation(Operation *list_operations, Operation *aux)
 
 /**
  * @brief Inserção á cabeça na lista intermedia opjobs
- * 
+ *
  * @param list_opjobs lista intermedia opjobs
  * @param aux Lista auxiliar
- * @return OpJob* 
+ * @return OpJob*
  */
 OpJob *head_insert_opjob(OpJob *list_opjobs, OpJob *aux)
 {
@@ -507,10 +507,10 @@ OpJob *head_insert_opjob(OpJob *list_opjobs, OpJob *aux)
 
 /**
  * @brief Inserção á cabeça na lista dos jobs
- * 
+ *
  * @param list_jobs Lista dos jobs
  * @param aux Lista auxiliar
- * @return Job* 
+ * @return Job*
  */
 Job *head_insert_job(Job *list_jobs, Job *aux)
 {
@@ -710,10 +710,10 @@ void show_operations(Operation *list_operations)
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param id_operation id da operação a ser removida
  */
-void remove_macop(MacOp **list_macops, int id_operation)
+MacOp *remove_macop(MacOp *list_macops, int id_operation)
 {
     MacOp *head_macop = malloc(sizeof(MacOp));
-    head_macop = *list_macops;
+    head_macop = list_macops;
 
     while (head_macop)
     {
@@ -724,13 +724,15 @@ void remove_macop(MacOp **list_macops, int id_operation)
             if (head_macop->previous)
                 head_macop->previous->next = head_macop->next;
             else
-                *list_macops = head_macop->next;
+                list_macops = head_macop->next;
 
             free(head_macop);
         }
 
         head_macop = head_macop->next;
     }
+
+    return list_macops;
 }
 
 #pragma endregion
@@ -744,7 +746,7 @@ void remove_macop(MacOp **list_macops, int id_operation)
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param list_machines lista das máquinas
  */
-void insert_operation(Operation **list_operations, MacOp **list_macops, Machine *list_machines)
+Operation *insert_operation(Operation *list_operations, MacOp **list_macops, Machine *list_machines)
 {
     Operation *head_op = malloc(sizeof(Operation));
     MacOp *head_macop = malloc(sizeof(MacOp));
@@ -752,7 +754,7 @@ void insert_operation(Operation **list_operations, MacOp **list_macops, Machine 
     Operation *aux_op = (Operation *)malloc(sizeof(Operation));
     MacOp *aux_macOp = (MacOp *)malloc(sizeof(MacOp));
 
-    head_op = *list_operations;
+    head_op = list_operations;
     head_macop = *list_macops;
 
     aux_macOp->id_op = head_op->id_op + 1;
@@ -807,10 +809,12 @@ void insert_operation(Operation **list_operations, MacOp **list_macops, Machine 
         }
     }
 
-    *list_operations = head_insert_operation(head_op, aux_op);
+    list_operations = head_insert_operation(head_op, aux_op);
 
     free(aux_op);
     free(aux_macOp);
+
+    return list_operations;
 }
 
 /**
@@ -820,12 +824,12 @@ void insert_operation(Operation **list_operations, MacOp **list_macops, Machine 
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param id_operation id da operação a ser removida
  */
-void remove_operation(Operation **list_operations, MacOp **list_macops, int id_operation)
+Operation *remove_operation(Operation *list_operations, MacOp **list_macops, int id_operation)
 {
     Operation *head_op = malloc(sizeof(Operation));
     MacOp *head_macop = malloc(sizeof(MacOp));
 
-    head_op = *list_operations;
+    head_op = list_operations;
     while (head_op)
     {
         if (head_op->id_op == id_operation)
@@ -853,12 +857,14 @@ void remove_operation(Operation **list_operations, MacOp **list_macops, int id_o
             if (head_op->previous)
                 head_op->previous->next = head_op->next;
             else
-                *list_operations = head_op->next;
+                list_operations = head_op->next;
         }
 
         head_op = head_op->next;
     }
     free(head_op);
+
+    return list_operations;
 }
 
 /**
@@ -870,6 +876,7 @@ void remove_operation(Operation **list_operations, MacOp **list_macops, int id_o
  */
 void change_operation(MacOp **list_macops, Machine *list_machines, int id_operation)
 {
+    /**
     remove_macop(list_macops, id_operation);
 
     MacOp *head_macop = malloc(sizeof(MacOp));
@@ -908,6 +915,7 @@ void change_operation(MacOp **list_macops, Machine *list_machines, int id_operat
         else if (aux_macop->id_mac >= 0)
             printf("Essa maquina nao existe");
     }
+    **/
 }
 
 /**
@@ -1055,7 +1063,7 @@ void menu_job(Operation **list_operations, MacOp **list_macops, Machine **list_m
         case 2:
             system("cls");
             {
-                insert_operation(list_operations, list_macops, *list_machines);
+                *list_operations = insert_operation(*list_operations, list_macops, *list_machines);
                 system("pause");
             }
             system("cls");
@@ -1070,7 +1078,7 @@ void menu_job(Operation **list_operations, MacOp **list_macops, Machine **list_m
                 scanf("%d", &id_op);
                 if (exist_operation(list_operations, id_op))
                 {
-                    remove_operation(list_operations, list_macops, id_op);
+                    *list_operations = remove_operation(*list_operations, list_macops, id_op);
                 }
                 else
                     printf("\nID inserido inexistente\n");
