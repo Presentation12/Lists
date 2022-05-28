@@ -18,6 +18,7 @@ int free_machines(Machine *list);
 Machine *head_insert_machine(Machine *list, Machine *aux);
 void show_machines(Machine *list);
 int exist_machine(Machine **listMachine, int id);
+void show_machines_by_op_id(MacOp *list_macops, int id_operation);
 
 // Funções macops
 MacOp *read_macops(MacOp *listMacOp);
@@ -36,7 +37,7 @@ Operation *head_insert_operation(Operation *list, Operation *aux);
 void show_operations(Operation *list);
 Operation *insert_operation(Operation *listOperation, MacOp **listMacOp, Machine *listMachine);
 Operation *remove_operation(Operation *list_operations, MacOp **list_macops, int id_operation);
-void change_operation(MacOp **listMacOp, Machine *listMachine, int id_op);
+MacOp *change_operation(MacOp *list_macops, int id_operation);
 int exist_operation(Operation **listOperation, int id);
 
 // Funções opjobs
