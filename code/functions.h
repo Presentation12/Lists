@@ -43,11 +43,13 @@ int exist_operation(Operation **listOperation, int id);
 void free_opjobs(OpJob *list_opjobs);
 OpJob *read_opjobs(OpJob *list_opjobs);
 OpJob *write_opjobs(OpJob *list_opjobs);
+OpJob *head_insert_opjob(OpJob *list_opjobs, OpJob *aux);
 
 // Funções jobs
 void free_jobs(Job *list_job);
 Job *read_jobs(Job *list_jobs);
 Job *write_jobs(Job *list_jobs);
+Job *head_insert_job(Job *list_jobs, Job *aux);
 
 // Funções de interface usuário
 void interface_job();

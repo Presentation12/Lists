@@ -937,8 +937,8 @@ float avg_time(MacOp **list_macops, int id_operation)
 int min_time(Operation **list_operations, MacOp **list_macops)
 {
     int sum = 0, min;
-    Operation *head_op = malloc(sizeof(Operation));
-    MacOp *head_macop = malloc(sizeof(MacOp));
+    Operation *head_op;
+    MacOp *head_macop;
 
     head_op = *list_operations;
     while (head_op)
@@ -970,8 +970,8 @@ int min_time(Operation **list_operations, MacOp **list_macops)
 int max_time(Operation **list_operations, MacOp **list_macops)
 {
     int sum = 0, max;
-    Operation *head_op = malloc(sizeof(Operation));
-    MacOp *head_macop = malloc(sizeof(MacOp));
+    Operation *head_op;
+    MacOp *head_macop;
 
     head_op = *list_operations;
     while (head_op)
