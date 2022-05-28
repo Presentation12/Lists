@@ -8,7 +8,6 @@
  * @copyright Copyright (c) 2022
  *
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "functions.h"
@@ -303,8 +302,9 @@ Job *write_jobs(Job *list_jobs)
  * @brief Desalocar memória ocupada pela lista das máquinas
  *
  * @param list_machines lista das máquinas
+ * @return int
  */
-void free_machines(Machine *list_machines)
+int free_machines(Machine *list_machines)
 {
     Machine *aux = malloc(sizeof(Machine));
 
@@ -314,14 +314,17 @@ void free_machines(Machine *list_machines)
         list_machines = list_machines->next;
         free(aux);
     }
+
+    return 1;
 }
 
 /**
  * @brief Desalocar memória ocupada pela lista MacOp
  *
  * @param list_macops lista MacOp
+ * @return int
  */
-void free_macops(MacOp *list_macops)
+int free_macops(MacOp *list_macops)
 {
     MacOp *aux = malloc(sizeof(MacOp));
 
@@ -331,14 +334,17 @@ void free_macops(MacOp *list_macops)
         list_macops = list_macops->next;
         free(aux);
     }
+
+    return 1;
 }
 
 /**
  * @brief Desalocar memória ocupada pela lista das operações
  *
  * @param list_operations lista das operações
+ * @return int
  */
-void free_operations(Operation *list_operations)
+int free_operations(Operation *list_operations)
 {
     Operation *aux = malloc(sizeof(Operation));
 
@@ -348,14 +354,17 @@ void free_operations(Operation *list_operations)
         list_operations = list_operations->next;
         free(aux);
     }
+
+    return 1;
 }
 
 /**
  * @brief Desalocar memória ocupada pela lista intermedia opjobs
  *
  * @param list_opjobs lista intermedia de operações e jobs
+ * @return int
  */
-void free_opjobs(OpJob *list_opjobs)
+int free_opjobs(OpJob *list_opjobs)
 {
     OpJob *aux = malloc(sizeof(OpJob));
 
@@ -365,14 +374,17 @@ void free_opjobs(OpJob *list_opjobs)
         list_opjobs = list_opjobs->next;
         free(aux);
     }
+
+    return 1;
 }
 
 /**
  * @brief Desalocar memória ocupada pela lista de jobs
  *
  * @param list_job lista de jobs
+ * @return int
  */
-void free_jobs(Job *list_job)
+int free_jobs(Job *list_job)
 {
     Job *aux = malloc(sizeof(Job));
 
@@ -382,6 +394,8 @@ void free_jobs(Job *list_job)
         list_job = list_job->next;
         free(aux);
     }
+
+    return 1;
 }
 
 #pragma endregion
@@ -604,9 +618,9 @@ int exist_macop(MacOp **list_macops, int id_machine, int id_operation)
 #pragma region GETS
 
 /**
- * @brief Busca o valor maximo para a variavel tempo na lista das máquinas
+ * @brief Busca o valor maximo para a variavel tempo na lista intermedia macops
  *
- * @param list_machines lista das máquinas
+ * @param list_macops lista intermedia de maquinas e operações
  * @return int
  */
 int get_max_time(MacOp **list_macops)
@@ -901,7 +915,6 @@ void change_operation(MacOp **list_macops, Machine *list_machines, int id_operat
  *        considerando todas as alternativas possíveis
  *
  * @param list_macops lista intermedia entre as operações e as máquinas
- * @param list_machines lista das máquinas
  * @param id_operation id da operação
  */
 float avg_time(MacOp **list_macops, int id_operation)
