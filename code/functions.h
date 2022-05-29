@@ -18,7 +18,7 @@ Machine *write_machines(Machine *listMachine);
 int free_machines(Machine *list);
 Machine *head_insert_machine(Machine *list, Machine *aux);
 void show_machines(Machine *list);
-int exist_machine(Machine **listMachine, int id);
+int exist_machine(Machine *list_machines, int id_machine);
 void show_machines_by_op_id(MacOp *list_macops, int id_operation);
 
 // Funções macops
@@ -28,7 +28,7 @@ int free_macops(MacOp *list);
 MacOp *head_insert_macop(MacOp *list, MacOp *aux);
 void show_macops(MacOp *list);
 MacOp *remove_macop(MacOp *list_macops, int id_operation);
-int exist_macop(MacOp **listMacOp, int id_mac, int id_op);
+int exist_macop(MacOp *list_macops, int id_machine, int id_operation);
 
 // Funções operations
 Operation *read_operations(Operation *listOperation);
@@ -39,7 +39,7 @@ void show_operations(Operation *list);
 Operation *insert_operation(Operation *listOperation, MacOp **listMacOp, Machine *listMachine);
 Operation *remove_operation(Operation *list_operations, MacOp **list_macops, int id_operation);
 MacOp *change_operation(MacOp *list_macops, int id_operation);
-int exist_operation(Operation **listOperation, int id);
+int exist_operation(Operation *list_operations, int id_operation);
 
 // Funções opjobs
 int free_opjobs(OpJob *list_opjobs);
@@ -63,6 +63,7 @@ int max_time(Operation **list_operations, MacOp **list_macops);
 float avg_time(MacOp **list_macops, int id_operation);
 
 // Gets
-int get_max_time(MacOp **list_macops);
+int get_max_time(MacOp *list_macops);
+int get_new_operation_id(Operation *list_operation);
 
 #endif
