@@ -29,7 +29,7 @@ Machine *read_machines(Machine *list_machines)
     {
         printf("Ficheiro não pode ser aberto!\n");
         getchar();
-        return list_machines;
+        return NULL;
     }
 
     if (aux == NULL)
@@ -102,7 +102,7 @@ MacOp *read_macops(MacOp *list_macops)
     {
         printf("Ficheiro não pode ser aberto!\n");
         getchar();
-        return list_macops;
+        return NULL;
     }
 
     if (aux == NULL)
@@ -175,7 +175,7 @@ Operation *read_operations(Operation *list_operations)
     {
         printf("Ficheiro não pode ser aberto!\n");
         getchar();
-        return list_operations;
+        return NULL;
     }
 
     if (aux == NULL)
@@ -248,7 +248,7 @@ OpJob *read_opjobs(OpJob *list_opjobs)
     {
         printf("Ficheiro não pode ser aberto!\n");
         getchar();
-        return list_opjobs;
+        return NULL;
     }
 
     if (aux == NULL)
@@ -321,7 +321,7 @@ Job *read_jobs(Job *list_jobs)
     {
         printf("Ficheiro não pode ser aberto!\n");
         getchar();
-        return list_jobs;
+        return NULL;
     }
 
     if (aux == NULL)
