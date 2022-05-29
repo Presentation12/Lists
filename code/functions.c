@@ -1171,6 +1171,64 @@ int max_time(Operation **list_operations, MacOp **list_macops)
     return sum;
 }
 
+/**
+ * @brief Remoção de um job
+ * Sucessidamente ira remover das restantes listas a ligações
+ * 
+ * @param list_jobs Lista de jobs
+ * @param list_opjobs Lista intermedia de jobs e operações
+ * @param list_operations Lista de operações
+ * @param list_macops Lista intermedia de máquinas e operações
+ * @param id_job Id do job a ser removido
+ * @return Job* 
+ */
+Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, int id_job)
+{
+    Job *head_job = malloc(sizeof(Job));
+    OpJob *head_opjob = malloc(sizeof(OpJob));
+
+    head_job = list_jobs;
+    while (head_job)
+    {
+        if (head_job->id_job == id_job)
+        {
+            head_opjob = *list_opjobs;
+            while (head_opjob)
+            {
+                if (head_opjob->id_job == id_job)
+                {
+                    //remoção das restantes ligações nas outras listas (operaçoes e macops)
+                    *list_operations = remove_operation(*list_operations, list_macops, head_opjob->id_op);
+
+                    if (head_opjob->next)
+                        head_opjob->next->previous = head_opjob->previous;
+                    if (head_opjob->previous)
+                        head_opjob->previous->next = head_opjob->next;
+                    else
+                        *list_opjobs = head_opjob->next;
+
+                    free(head_opjob);
+                }
+
+                head_opjob = head_opjob->next;
+            }
+
+            if (head_job->next)
+                head_job->next->previous = head_job->previous;
+            if (head_job->previous)
+                head_job->previous->next = head_job->next;
+            else
+                list_jobs = head_job->next;
+        }
+
+        head_job = head_job->next;
+    }
+    free(head_job);
+
+    return list_jobs;
+}
+
+
 #pragma endregion
 
 #pragma region MENUS
@@ -1359,7 +1417,11 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 3:
             system("cls");
             {
-                system("pause");
+                int id_job;
+                show_jobs(*list_jobs);
+                printf("\nSelecione o id a remover: ");
+                scanf("%d", &id_job);
+                *list_jobs = remove_job(*list_jobs, list_opjobs, list_operations, list_macops, id_job);
             }
             system("cls");
             break;
@@ -1367,6 +1429,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 4:
             system("cls");
             {
+                // menu job
                 system("pause");
             }
             system("cls");
@@ -1375,6 +1438,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 5:
             system("cls");
             {
+                // simular
                 system("pause");
             }
             system("cls");
@@ -1383,6 +1447,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 6:
             system("cls");
             {
+                // ponto 9 em duvida
                 system("pause");
             }
             system("cls");

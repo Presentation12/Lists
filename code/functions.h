@@ -54,6 +54,7 @@ Job *read_jobs(Job *list_jobs);
 Job *write_jobs(Job *list_jobs);
 Job *head_insert_job(Job *list_jobs, Job *aux);
 void show_jobs(Job *list_jobs);
+Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, int id_job);
 
 // Funções de interface usuário
 void interface_job();
