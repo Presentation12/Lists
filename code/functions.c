@@ -391,7 +391,7 @@ Job *write_jobs(Job *list_jobs)
  */
 int free_machines(Machine *list_machines)
 {
-    Machine *aux = malloc(sizeof(Machine));
+    Machine *aux;
 
     while (list_machines)
     {
@@ -411,7 +411,7 @@ int free_machines(Machine *list_machines)
  */
 int free_macops(MacOp *list_macops)
 {
-    MacOp *aux = malloc(sizeof(MacOp));
+    MacOp *aux;
 
     while (list_macops)
     {
@@ -431,7 +431,7 @@ int free_macops(MacOp *list_macops)
  */
 int free_operations(Operation *list_operations)
 {
-    Operation *aux = malloc(sizeof(Operation));
+    Operation *aux;
 
     while (list_operations)
     {
@@ -451,7 +451,7 @@ int free_operations(Operation *list_operations)
  */
 int free_opjobs(OpJob *list_opjobs)
 {
-    OpJob *aux = malloc(sizeof(OpJob));
+    OpJob *aux;
 
     while (list_opjobs)
     {
@@ -471,7 +471,7 @@ int free_opjobs(OpJob *list_opjobs)
  */
 int free_jobs(Job *list_job)
 {
-    Job *aux = malloc(sizeof(Job));
+    Job *aux;
 
     while (list_job)
     {
