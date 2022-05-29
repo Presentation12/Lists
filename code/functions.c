@@ -739,7 +739,7 @@ int get_new_operation_id(Operation *list_operation)
 
 #pragma endregion
 
-#pragma region SHOW FUNCTIONS
+#pragma region SHOW
 
 /**
  * @brief Listagem das máquinas na lista
@@ -753,7 +753,7 @@ void show_machines(Machine *list_machines)
     printf("-------------------------\n");
     while (list_machines)
     {
-        printf("ID: %d\n", list_machines->id_mac);
+        printf("ID Maquina: %d\n", list_machines->id_mac);
         list_machines = list_machines->next;
     }
     printf("-------------------------\n");
@@ -813,8 +813,45 @@ void show_operations(Operation *list_operations)
     printf("-------------------------\n");
     while (list_operations)
     {
-        printf("ID: %d\n", list_operations->id_op);
+        printf("ID Operacao: %d\n", list_operations->id_op);
         list_operations = list_operations->next;
+    }
+    printf("-------------------------\n");
+}
+
+/**
+ * @brief Listagem da lista intermedia entre operações e jobs
+ * 
+ * @param list_opjobs Lista das op jobs
+ */
+void show_opjobs(OpJob *list_opjobs)
+{
+    printf("----------------------------------\n");
+    printf("          Lista Intermedia        \n");
+    printf("         (Operacoes e Jobs) \n");
+    printf("----------------------------------\n");
+    while (list_opjobs)
+    {
+        printf("ID Job: %d / ID Operacao: %d\n", list_opjobs->id_job, list_opjobs->id_op);
+        list_opjobs = list_opjobs->next;
+    }
+    printf("-------------------------\n");
+}
+
+/**
+ * @brief Listagem dos jobs
+ * 
+ * @param list_jobs Lista dos jobs
+ */
+void show_jobs(Job *list_jobs)
+{
+    printf("-------------------------\n");
+    printf("      Lista das Jobs     \n");
+    printf("-------------------------\n");
+    while (list_jobs)
+    {
+        printf("ID Job: %d\n", list_jobs->id_job);
+        list_jobs = list_jobs->next;
     }
     printf("-------------------------\n");
 }
