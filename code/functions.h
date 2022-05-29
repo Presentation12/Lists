@@ -37,9 +37,10 @@ int free_operations(Operation *list);
 Operation *head_insert_operation(Operation *list, Operation *aux);
 void show_operations(Operation *list);
 Operation *insert_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, Machine *list_machines, int id_job);
-Operation *remove_operation(Operation *list_operations, MacOp **list_macops, int id_operation);
+Operation *remove_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, int id_operation);
 MacOp *change_operation(MacOp *list_macops, int id_operation);
 int exist_operation(Operation *list_operations, int id_operation);
+void show_operations_by_job(OpJob *list_opjobs, int id_job);
 
 // Funções opjobs
 int free_opjobs(OpJob *list_opjobs);

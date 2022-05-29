@@ -878,6 +878,29 @@ void show_jobs(Job *list_jobs)
     printf("-------------------------\n");
 }
 
+/**
+ * @brief Mostra os ids das operacoes pertencentes a um job passado por id
+ *
+ * @param list_opjobs lista intermedia de jobs e operacoes
+ * @param id_job id do job
+ */
+void show_operations_by_job(OpJob *list_opjobs, int id_job)
+{
+    printf("----------------------------------\n");
+    printf("          Lista Intermedia        \n");
+    printf("             (Job %d) \n", id_job);
+    printf("----------------------------------\n");
+    while (list_opjobs)
+    {
+        if (list_opjobs->id_job == id_job)
+        {
+            printf("ID Operacao: %d\n", list_opjobs->id_op);
+        }
+        list_opjobs = list_opjobs->next;
+    }
+    printf("----------------------------------\n");
+}
+
 #pragma endregion
 
 #pragma region MAC OP
@@ -1008,8 +1031,9 @@ Operation *insert_operation(OpJob **list_opjobs, Operation *list_operations, Mac
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param id_operation id da operação a ser removida
  */
-Operation *remove_operation(Operation *list_operations, MacOp **list_macops, int id_operation)
+Operation *remove_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, int id_operation)
 {
+    OpJob *head_opjob = malloc(sizeof(OpJob));
     Operation *head_op = malloc(sizeof(Operation));
     MacOp *head_macop = malloc(sizeof(MacOp));
 
@@ -1046,7 +1070,25 @@ Operation *remove_operation(Operation *list_operations, MacOp **list_macops, int
 
         head_op = head_op->next;
     }
+
+    head_opjob = *list_opjobs;
+    while (head_opjob)
+    {
+        if (head_opjob->id_op == id_operation)
+        {
+            if (head_opjob->next)
+                head_opjob->next->previous = head_opjob->previous;
+            if (head_opjob->previous)
+                head_opjob->previous->next = head_opjob->next;
+            else
+                *list_opjobs = head_opjob->next;
+        }
+
+        head_opjob = head_opjob->next;
+    }
+
     free(head_op);
+    free(head_opjob);
 
     return list_operations;
 }
@@ -1204,7 +1246,7 @@ Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations
                 if (head_opjob->id_job == id_job)
                 {
                     // remoção das restantes ligações nas outras listas (operaçoes e macops)
-                    *list_operations = remove_operation(*list_operations, list_macops, head_opjob->id_op);
+                    *list_operations = remove_operation(list_opjobs,*list_operations, list_macops, head_opjob->id_op);
 
                     if (head_opjob->next)
                         head_opjob->next->previous = head_opjob->previous;
@@ -1305,9 +1347,9 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
             {
                 int id_job;
                 show_jobs(*list_jobs);
-                printf("\nSelecione o id a remover: ");
+                printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
-                *list_operations = insert_operation(list_opjobs,*list_operations, list_macops, *list_machines, id_job);
+                *list_operations = insert_operation(list_opjobs, *list_operations, list_macops, *list_machines, id_job);
                 system("pause");
             }
             system("cls");
@@ -1316,7 +1358,14 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 5:
             system("cls");
             {
-                // remover operaçao em job
+                int id_job, id_operation;
+                show_jobs(*list_jobs);
+                printf("\nSelecione o id do job: ");
+                scanf("%d", &id_job);
+                show_operations_by_job(*list_opjobs, id_job);
+                printf("\nSelecione o id da operacao a ser removida:");
+                scanf("%d", &id_operation);
+                *list_operations = remove_operation(list_opjobs, *list_operations, list_macops, id_operation);
                 system("pause");
             }
             system("cls");
