@@ -32,6 +32,23 @@ Machine *read_machines(Machine *list_machines)
         return list_machines;
     }
 
+    if (aux == NULL)
+    {
+        return list_machines;
+    }
+
+    ///////////////////////////////////////
+    int c = fgetc(file);
+    if (c == EOF)
+    {
+        return list_machines;
+    }
+    else
+    {
+        ungetc(c, file);
+    }
+    ///////////////////////////////////////
+
     while (!feof(file))
     {
         fscanf(file, "%d\n", &aux->id_mac);
@@ -87,6 +104,23 @@ MacOp *read_macops(MacOp *list_macops)
         getchar();
         return list_macops;
     }
+
+    if (aux == NULL)
+    {
+        return list_macops;
+    }
+
+    ///////////////////////////////////////
+    int c = fgetc(file);
+    if (c == EOF)
+    {
+        return list_macops;
+    }
+    else
+    {
+        ungetc(c, file);
+    }
+    ///////////////////////////////////////
 
     while (!feof(file))
     {
@@ -144,6 +178,23 @@ Operation *read_operations(Operation *list_operations)
         return list_operations;
     }
 
+    if (aux == NULL)
+    {
+        return list_operations;
+    }
+
+    ///////////////////////////////////////
+    int c = fgetc(file);
+    if (c == EOF)
+    {
+        return list_operations;
+    }
+    else
+    {
+        ungetc(c, file);
+    }
+    ///////////////////////////////////////
+
     while (!feof(file))
     {
         fscanf(file, "%d\n", &aux->id_op);
@@ -200,6 +251,23 @@ OpJob *read_opjobs(OpJob *list_opjobs)
         return list_opjobs;
     }
 
+    if (aux == NULL)
+    {
+        return list_opjobs;
+    }
+
+    ///////////////////////////////////////
+    int c = fgetc(file);
+    if (c == EOF)
+    {
+        return list_opjobs;
+    }
+    else
+    {
+        ungetc(c, file);
+    }
+    ///////////////////////////////////////
+
     while (!feof(file))
     {
         fscanf(file, "%d\t%d\n", &aux->id_job, &aux->id_op);
@@ -255,6 +323,23 @@ Job *read_jobs(Job *list_jobs)
         getchar();
         return list_jobs;
     }
+
+    if (aux == NULL)
+    {
+        return list_jobs;
+    }
+
+    ///////////////////////////////////////
+    int c = fgetc(file);
+    if (c == EOF)
+    {
+        return list_jobs;
+    }
+    else
+    {
+        ungetc(c, file);
+    }
+    ///////////////////////////////////////
 
     while (!feof(file))
     {
@@ -692,7 +777,7 @@ void show_machines_by_op_id(MacOp *list_macops, int id_operation)
 {
     printf("----------------------------------\n");
     printf("          Lista Intermedia        \n");
-    printf("           (Operacao %d) \n" ,id_operation);
+    printf("           (Operacao %d) \n", id_operation);
     printf("----------------------------------\n");
     while (list_macops)
     {
