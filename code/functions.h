@@ -8,7 +8,8 @@
  * @copyright Copyright (c) 2022
  *
  */
-
+#ifndef FUNCTIONS
+#define FUNCTIONS
 #include "structs.h"
 
 // Funções machines
@@ -63,3 +64,5 @@ float avg_time(MacOp **list_macops, int id_operation);
 
 // Gets
 int get_max_time(MacOp **list_macops);
+
+#endif

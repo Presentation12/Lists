@@ -8,6 +8,8 @@
  * @copyright Copyright (c) 2022
  *
  */
+#ifndef STRUCTS
+#define STRUCTS
 
 /**
  * @brief Estrutura que representa a lista das máquinas
@@ -59,3 +61,5 @@ typedef struct list_job
     int id_job;
     struct list_job *next, *previous;
 } Job;
+
+#endif
