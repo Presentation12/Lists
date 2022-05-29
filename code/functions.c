@@ -740,9 +740,9 @@ int get_new_operation_id(Operation *list_operations)
 /**
  * @brief Função para encontrar o próximo id da lista jobs a ser usado por um novo
  * job a ser inserida na respetiva função
- * 
+ *
  * @param list_jobs lista dos jobs
- * @return int 
+ * @return int
  */
 int get_new_job_id(Job *list_jobs)
 {
@@ -924,73 +924,79 @@ MacOp *remove_macop(MacOp *list_macops, int id_operation)
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param list_machines lista das máquinas
  */
-Operation *insert_operation(Operation *list_operations, MacOp **list_macops, Machine *list_machines)
+Operation *insert_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, Machine *list_machines, int id_job)
 {
+    OpJob *head_opjob = malloc(sizeof(OpJob));
     Operation *head_op = malloc(sizeof(Operation));
     MacOp *head_macop = malloc(sizeof(MacOp));
 
+    OpJob *aux_opjob = malloc(sizeof(OpJob));
     Operation *aux_op = (Operation *)malloc(sizeof(Operation));
-    MacOp *aux_macOp = (MacOp *)malloc(sizeof(MacOp));
+    MacOp *aux_macop = (MacOp *)malloc(sizeof(MacOp));
 
+    head_opjob = *list_opjobs;
     head_op = list_operations;
     head_macop = *list_macops;
 
-    aux_macOp->id_op = get_new_operation_id(head_op);
-    aux_op->id_op = get_new_operation_id(head_op);
+    aux_macop->id_op = get_new_operation_id(head_op);
+    aux_op->id_op = aux_macop->id_op;
+    aux_opjob->id_op = aux_macop->id_op;
+    aux_opjob->id_job = id_job;
 
     show_machines(list_machines);
     printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
-    scanf("%d", &aux_macOp->id_mac);
+    scanf("%d", &aux_macop->id_mac);
 
-    if (aux_macOp->id_mac >= 0)
+    if (aux_macop->id_mac >= 0)
     {
         printf("\nInsira o tempo:");
-        scanf("%d", &aux_macOp->time);
+        scanf("%d", &aux_macop->time);
 
-        if (exist_machine(list_machines, aux_macOp->id_mac))
+        if (exist_machine(list_machines, aux_macop->id_mac))
         {
-            if (exist_macop(*list_macops, aux_macOp->id_mac, aux_macOp->id_op))
+            if (exist_macop(*list_macops, aux_macop->id_mac, aux_macop->id_op))
                 printf("\nEsta combinacaoo ja existe\nNao inserido\n");
             else
             {
-                *list_macops = head_insert_macop(head_macop, aux_macOp);
+                *list_macops = head_insert_macop(head_macop, aux_macop);
                 head_macop = *list_macops;
             }
         }
-        else if (aux_macOp->id_mac >= 0)
+        else if (aux_macop->id_mac >= 0)
             printf("\nEssa maquina nao existe\n");
     }
 
-    while (aux_macOp->id_mac >= 0)
+    while (aux_macop->id_mac >= 0)
     {
         show_machines(list_machines);
         printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
-        scanf("%d", &aux_macOp->id_mac);
+        scanf("%d", &aux_macop->id_mac);
 
-        if (aux_macOp->id_mac >= 0)
+        if (aux_macop->id_mac >= 0)
         {
             printf("\nInsira o tempo:");
-            scanf("%d", &aux_macOp->time);
+            scanf("%d", &aux_macop->time);
 
-            if (exist_machine(list_machines, aux_macOp->id_mac))
+            if (exist_machine(list_machines, aux_macop->id_mac))
             {
-                if (exist_macop(*list_macops, aux_macOp->id_mac, aux_macOp->id_op))
+                if (exist_macop(*list_macops, aux_macop->id_mac, aux_macop->id_op))
                     printf("\nEsta combinação ja existe\nNao inserido\n");
                 else
                 {
-                    *list_macops = head_insert_macop(head_macop, aux_macOp);
+                    *list_macops = head_insert_macop(head_macop, aux_macop);
                     head_macop = *list_macops;
                 }
             }
-            else if (aux_macOp->id_mac >= 0)
+            else if (aux_macop->id_mac >= 0)
                 printf("\nEssa maquina nao existe\n");
         }
     }
 
     list_operations = head_insert_operation(head_op, aux_op);
+    *list_opjobs = head_insert_opjob(head_opjob, aux_opjob);
 
     free(aux_op);
-    free(aux_macOp);
+    free(aux_macop);
 
     return list_operations;
 }
@@ -1174,13 +1180,13 @@ int max_time(Operation **list_operations, MacOp **list_macops)
 /**
  * @brief Remoção de um job
  * Sucessidamente ira remover das restantes listas a ligações
- * 
+ *
  * @param list_jobs Lista de jobs
  * @param list_opjobs Lista intermedia de jobs e operações
  * @param list_operations Lista de operações
  * @param list_macops Lista intermedia de máquinas e operações
  * @param id_job Id do job a ser removido
- * @return Job* 
+ * @return Job*
  */
 Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, int id_job)
 {
@@ -1197,7 +1203,7 @@ Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations
             {
                 if (head_opjob->id_job == id_job)
                 {
-                    //remoção das restantes ligações nas outras listas (operaçoes e macops)
+                    // remoção das restantes ligações nas outras listas (operaçoes e macops)
                     *list_operations = remove_operation(*list_operations, list_macops, head_opjob->id_op);
 
                     if (head_opjob->next)
@@ -1228,147 +1234,9 @@ Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations
     return list_jobs;
 }
 
-
 #pragma endregion
 
 #pragma region MENUS
-
-/**
- * @brief Texto apresentado ao utilizador do menu job
- *
- */
-void interface_job()
-{
-    printf("----------------------\n");
-    printf("        Menu Job      \n");
-    printf(" [1]-Visualizar listas\n [2]-Inserir Operacao\n [3]-Remover Operacao\n [4]-Alterar Operacao\n [5]-Tempo Minimo\n [6]-Tempo Maximo\n [7]-Media de Tempo (operacao)\n [0]- Sair\n");
-    printf("----------------------\n");
-    printf("\n-->");
-}
-
-/**
- * @brief Menu de um determinado job selecionado
- *
- * @param list_operations lista das operações
- * @param list_macops lista intermedia entre as operações e as máquinas
- * @param list_machines lista das máquinas
- *
- */
-void menu_job(Operation **list_operations, MacOp **list_macops, Machine **list_machines)
-{
-    int op;
-    interface_job();
-    scanf("%d", &op);
-
-    while (op != 0)
-    {
-        switch (op)
-        {
-
-        case 1:
-            system("cls");
-            {
-                show_operations(*list_operations);
-                show_macops(*list_macops);
-                show_machines(*list_machines);
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        case 2:
-            system("cls");
-            {
-                *list_operations = insert_operation(*list_operations, list_macops, *list_machines);
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        case 3:
-            system("cls");
-            {
-                int id_op;
-                show_operations(*list_operations);
-                printf("\n\nSelecione o id da operacao a remover: ");
-                scanf("%d", &id_op);
-                if (exist_operation(*list_operations, id_op))
-                {
-                    *list_operations = remove_operation(*list_operations, list_macops, id_op);
-                }
-                else
-                    printf("\nID inserido inexistente\n");
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        case 4:
-            system("cls");
-            {
-                int id_op;
-                show_operations(*list_operations);
-                printf("\n\nSelecione o id da operacao a alterar: ");
-                scanf("%d", &id_op);
-                if (exist_operation(*list_operations, id_op))
-                {
-                    change_operation(*list_macops, id_op);
-                }
-                else
-                    printf("\nID inserido inexistente\n");
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        case 5:
-            system("cls");
-            {
-                show_operations(*list_operations);
-                printf("\n\nTempo minimo executado pelo job: %d\n", min_time(list_operations, list_macops));
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        case 6:
-            system("cls");
-            {
-                show_operations(*list_operations);
-                printf("\n\nTempo maximo executado pelo job: %d\n", max_time(list_operations, list_macops));
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        case 7:
-            system("cls");
-            {
-                int id_op;
-                show_operations(*list_operations);
-                printf("\n\nSelecione o id da operacao: ");
-                scanf("%d", &id_op);
-                if (exist_operation(*list_operations, id_op))
-                {
-                    printf("\n\nTempo medio executado pela operacao %d: %.2f\n", id_op, avg_time(list_macops, id_op));
-                }
-                else
-                    printf("\nID inserido inexistente\n");
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        default:
-            system("cls");
-            printf("Opcao invalida\nIntroduza novamente\n");
-            break;
-        }
-
-        interface_job();
-        scanf("%d", &op);
-    }
-}
 
 /**
  * @brief texto apresentado ao utilizador no Menu principal
@@ -1378,7 +1246,10 @@ void interface_principal()
 {
     printf("----------------------\n");
     printf("        Menu Principal      \n");
-    printf(" [1]-Visualizar Jobs\n [2]-Inserir Job\n [3]-Remover Job\n [4]-Menu Job\n [5]-Simular\n [6]-(ponto 9 TO DO)\n[0]- Sair\n");
+    printf(" [1]-Visualizar Jobs\n [2]-Inserir Job\n [3]-Remover Job");
+    printf("\n [4]-Inserir Operacao em Job\n [5]-Remover Operacao em Job\n [6]-Editar Operacao em Job");
+    printf("\n [7]-Tempo Minimo Job\n [8]-Tempo Maximo Job\n [9]-Media de Tempo (operacao)");
+    printf("\n [10]-Simular\n [11]-(ponto 9 TO DO)\n [0]- Sair\n");
     printf("----------------------\n");
     printf("\n-->");
 }
@@ -1399,6 +1270,9 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
             {
                 show_jobs(*list_jobs);
                 show_opjobs(*list_opjobs);
+                show_operations(*list_operations);
+                show_macops(*list_macops);
+                show_machines(*list_machines);
                 system("pause");
             }
             system("cls");
@@ -1429,7 +1303,11 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 4:
             system("cls");
             {
-                // menu job
+                int id_job;
+                show_jobs(*list_jobs);
+                printf("\nSelecione o id a remover: ");
+                scanf("%d", &id_job);
+                *list_operations = insert_operation(list_opjobs,*list_operations, list_macops, *list_machines, id_job);
                 system("pause");
             }
             system("cls");
@@ -1438,7 +1316,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 5:
             system("cls");
             {
-                // simular
+                // remover operaçao em job
                 system("pause");
             }
             system("cls");
@@ -1447,7 +1325,52 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 6:
             system("cls");
             {
-                // ponto 9 em duvida
+                // editar operacao em job
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 7:
+            system("cls");
+            {
+                // tempo minimo de um job
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 8:
+            system("cls");
+            {
+                // tempo maximo de um job
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 9:
+            system("cls");
+            {
+                // Media de Tempo (operacao)
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 10:
+            system("cls");
+            {
+                // Simular
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 11:
+            system("cls");
+            {
+                // (ponto 9 TO DO)
                 system("pause");
             }
             system("cls");

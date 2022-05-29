@@ -36,7 +36,7 @@ Operation *write_operations(Operation *listOperation);
 int free_operations(Operation *list);
 Operation *head_insert_operation(Operation *list, Operation *aux);
 void show_operations(Operation *list);
-Operation *insert_operation(Operation *listOperation, MacOp **listMacOp, Machine *listMachine);
+Operation *insert_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, Machine *list_machines, int id_job);
 Operation *remove_operation(Operation *list_operations, MacOp **list_macops, int id_operation);
 MacOp *change_operation(MacOp *list_macops, int id_operation);
 int exist_operation(Operation *list_operations, int id_operation);
@@ -57,8 +57,6 @@ void show_jobs(Job *list_jobs);
 Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, int id_job);
 
 // Funções de interface usuário
-void interface_job();
-void menu_job(Operation **listOperation, MacOp **listMacOp, Machine **listMachine);
 void interface_principal();
 void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, Machine **list_machines);
 
