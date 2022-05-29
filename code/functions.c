@@ -718,21 +718,43 @@ int get_max_time(MacOp *list_macops)
 /**
  * @brief Função para encontrar o próximo id da lista das operações a ser usado por uma nova
  * operação a ser inserida na respetiva função
- * 
+ *
  * @param list_operation lista de operações
- * @return int 
+ * @return int
  */
-int get_new_operation_id(Operation *list_operation)
+int get_new_operation_id(Operation *list_operations)
 {
     int new_id = -1;
-    while (list_operation)
+    while (list_operations)
     {
-        if (list_operation->id_op > new_id)
+        if (list_operations->id_op > new_id)
         {
-            new_id = list_operation->id_op;
+            new_id = list_operations->id_op;
         }
-        
-        list_operation = list_operation->next;
+
+        list_operations = list_operations->next;
+    }
+    return new_id + 1;
+}
+
+/**
+ * @brief Função para encontrar o próximo id da lista jobs a ser usado por um novo
+ * job a ser inserida na respetiva função
+ * 
+ * @param list_jobs lista dos jobs
+ * @return int 
+ */
+int get_new_job_id(Job *list_jobs)
+{
+    int new_id = -1;
+    while (list_jobs)
+    {
+        if (list_jobs->id_job > new_id)
+        {
+            new_id = list_jobs->id_job;
+        }
+
+        list_jobs = list_jobs->next;
     }
     return new_id + 1;
 }
@@ -821,7 +843,7 @@ void show_operations(Operation *list_operations)
 
 /**
  * @brief Listagem da lista intermedia entre operações e jobs
- * 
+ *
  * @param list_opjobs Lista das op jobs
  */
 void show_opjobs(OpJob *list_opjobs)
@@ -840,7 +862,7 @@ void show_opjobs(OpJob *list_opjobs)
 
 /**
  * @brief Listagem dos jobs
- * 
+ *
  * @param list_jobs Lista dos jobs
  */
 void show_jobs(Job *list_jobs)
@@ -1286,6 +1308,93 @@ void menu_job(Operation **list_operations, MacOp **list_macops, Machine **list_m
         }
 
         interface_job();
+        scanf("%d", &op);
+    }
+}
+
+/**
+ * @brief texto apresentado ao utilizador no Menu principal
+ *
+ */
+void interface_principal()
+{
+    printf("----------------------\n");
+    printf("        Menu Principal      \n");
+    printf(" [1]-Visualizar Jobs\n [2]-Inserir Job\n [3]-Remover Job\n [4]-Menu Job\n [5]-Simular\n [6]-(ponto 9 TO DO)\n[0]- Sair\n");
+    printf("----------------------\n");
+    printf("\n-->");
+}
+
+void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, Machine **list_machines)
+{
+    int op;
+    interface_principal();
+    scanf("%d", &op);
+
+    while (op != 0)
+    {
+        switch (op)
+        {
+
+        case 1:
+            system("cls");
+            {
+                show_jobs(*list_jobs);
+                show_opjobs(*list_opjobs);
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 2:
+            system("cls");
+            {
+                Job *aux_job = (Job *)malloc(sizeof(Job));
+                aux_job->id_job = get_new_job_id(*list_jobs);
+                *list_jobs = head_insert_job(*list_jobs, aux_job);
+            }
+            system("cls");
+            break;
+
+        case 3:
+            system("cls");
+            {
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 4:
+            system("cls");
+            {
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 5:
+            system("cls");
+            {
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        case 6:
+            system("cls");
+            {
+                system("pause");
+            }
+            system("cls");
+            break;
+
+        default:
+            system("cls");
+            printf("Opcao invalida\nIntroduza novamente\n");
+            break;
+        }
+
+        interface_principal();
         scanf("%d", &op);
     }
 }

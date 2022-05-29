@@ -31,8 +31,7 @@ int main()
     list_opjobs = read_opjobs(list_opjobs);
     list_jobs = read_jobs(list_jobs);
 
-    //enviar listas restantes
-    menu_job(&list_operations, &list_macops, &list_machines/*, &list_opjobs, &list_jobs*/);
+    menu_principal(&list_jobs, &list_opjobs, &list_operations, &list_macops, &list_machines);
 
     write_machines(list_machines);
     write_macops(list_macops);
@@ -40,10 +39,9 @@ int main()
     write_opjobs(list_opjobs);
     write_jobs(list_jobs);
 
-
     free_machines(list_machines);
     free_macops(list_macops);
-    free_operations(list_operations); 
+    free_operations(list_operations);
     free_opjobs(list_opjobs);
     free_jobs(list_jobs);
 

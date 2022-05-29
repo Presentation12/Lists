@@ -46,16 +46,20 @@ int free_opjobs(OpJob *list_opjobs);
 OpJob *read_opjobs(OpJob *list_opjobs);
 OpJob *write_opjobs(OpJob *list_opjobs);
 OpJob *head_insert_opjob(OpJob *list_opjobs, OpJob *aux);
+void show_opjobs(OpJob *list_opjobs);
 
 // Funções jobs
 int free_jobs(Job *list_job);
 Job *read_jobs(Job *list_jobs);
 Job *write_jobs(Job *list_jobs);
 Job *head_insert_job(Job *list_jobs, Job *aux);
+void show_jobs(Job *list_jobs);
 
 // Funções de interface usuário
 void interface_job();
 void menu_job(Operation **listOperation, MacOp **listMacOp, Machine **listMachine);
+void interface_principal();
+void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, Machine **list_machines);
 
 // Funções de cálculo
 int min_time(Operation **list_operations, MacOp **list_macops);
@@ -65,5 +69,6 @@ float avg_time(MacOp **list_macops, int id_operation);
 // Gets
 int get_max_time(MacOp *list_macops);
 int get_new_operation_id(Operation *list_operation);
+int get_new_job_id(Job *list_jobs);
 
 #endif
