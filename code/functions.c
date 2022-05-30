@@ -903,41 +903,6 @@ void show_operations_by_job(OpJob *list_opjobs, int id_job)
 
 #pragma endregion
 
-#pragma region MAC OP
-
-/**
- * @brief Remoção de uma operação da lista intermedia MacOp
- *
- * @param list_macops lista intermedia entre as operações e as máquinas
- * @param id_operation id da operação a ser removida
- */
-MacOp *remove_macop(MacOp *list_macops, int id_operation)
-{
-    MacOp *head_macop = malloc(sizeof(MacOp));
-    head_macop = list_macops;
-
-    while (head_macop)
-    {
-        if (head_macop->id_op == id_operation)
-        {
-            if (head_macop->next)
-                head_macop->next->previous = head_macop->previous;
-            if (head_macop->previous)
-                head_macop->previous->next = head_macop->next;
-            else
-                list_macops = head_macop->next;
-
-            free(head_macop);
-        }
-
-        head_macop = head_macop->next;
-    }
-
-    return list_macops;
-}
-
-#pragma endregion
-
 #pragma region OPERATIONS
 
 /**
@@ -1136,20 +1101,18 @@ MacOp *change_operation(MacOp *list_macops, int id_operation)
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param id_operation id da operação
  */
-float avg_time(MacOp **list_macops, int id_operation)
+float avg_time(MacOp *list_macops, int id_operation)
 {
     int sum = 0, count = 0;
-    MacOp *head_macop;
 
-    head_macop = *list_macops;
-    while (head_macop)
+    while (list_macops)
     {
-        if (head_macop->id_op == id_operation)
+        if (list_macops->id_op == id_operation)
         {
-            sum += head_macop->time;
+            sum += list_macops->time;
             count++;
         }
-        head_macop = head_macop->next;
+        list_macops = list_macops->next;
     }
 
     return (float)sum / count;
@@ -1386,7 +1349,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
                 printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
                 show_operations_by_job(*list_opjobs, id_job);
-                printf("\nSelecione o id da operacao a ser removida:");
+                printf("\nSelecione o id da operacao:");
                 scanf("%d", &id_operation);
                 *list_macops = change_operation(*list_macops, id_operation);
                 system("pause");
@@ -1423,7 +1386,14 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 9:
             system("cls");
             {
-                // Media de Tempo (operacao)
+                int id_job, id_operation;
+                show_jobs(*list_jobs);
+                printf("\nSelecione o id do job: ");
+                scanf("%d", &id_job);
+                show_operations_by_job(*list_opjobs, id_job);
+                printf("\nSelecione o id da operacao: ");
+                scanf("%d", &id_operation);
+                printf("\nMedia de tempo da operacao id %d: %.2f\n", id_operation, avg_time(*list_macops,id_operation));
                 system("pause");
             }
             system("cls");

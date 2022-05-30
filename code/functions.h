@@ -27,7 +27,6 @@ MacOp *write_macops(MacOp *listMacOp);
 int free_macops(MacOp *list);
 MacOp *head_insert_macop(MacOp *list, MacOp *aux);
 void show_macops(MacOp *list);
-MacOp *remove_macop(MacOp *list_macops, int id_operation);
 int exist_macop(MacOp *list_macops, int id_machine, int id_operation);
 
 // Funções operations
@@ -64,7 +63,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
 // Funções de cálculo
 int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job);
 int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job);
-float avg_time(MacOp **list_macops, int id_operation);
+float avg_time(MacOp *list_macops, int id_operation);
 
 // Gets
 int get_max_time(MacOp *list_macops);
