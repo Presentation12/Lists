@@ -1123,7 +1123,7 @@ MacOp *change_operation(MacOp *list_macops, int id_operation)
         head_macop = head_macop->next;
     }
 
-    //fica a apontar para o inicio da lista
+    // fica a apontar para o inicio da lista
     head_macop = list_macops;
 
     return head_macop;
@@ -1166,27 +1166,28 @@ float avg_time(MacOp **list_macops, int id_operation)
  * @param list_operations lista das operações
  * @param list_macops lista intermedia entre as operações e as máquinas
  */
-int min_time(Operation **list_operations, MacOp **list_macops)
+int min_time(OpJob *list_opjobs, MacOp **list_macops, int id_job)
 {
     int sum = 0, min;
-    Operation *head_op;
     MacOp *head_macop;
 
-    head_op = *list_operations;
-    while (head_op)
+    while (list_opjobs)
     {
-        min = get_max_time(*list_macops);
-        head_macop = *list_macops;
-        while (head_macop)
+        if (list_opjobs->id_job == id_job)
         {
-            if (head_op->id_op == head_macop->id_op && head_macop->time < min)
+            min = get_max_time(*list_macops);
+            head_macop = *list_macops;
+            while (head_macop)
             {
-                min = head_macop->time;
+                if (list_opjobs->id_op == head_macop->id_op && head_macop->time < min)
+                {
+                    min = head_macop->time;
+                }
+                head_macop = head_macop->next;
             }
-            head_macop = head_macop->next;
+            sum += min;
         }
-        sum += min;
-        head_op = head_op->next;
+        list_opjobs = list_opjobs->next;
     }
 
     return sum;
@@ -1379,7 +1380,6 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 6:
             system("cls");
             {
-                // editar operacao em job
                 int id_job, id_operation;
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
@@ -1397,6 +1397,11 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
             system("cls");
             {
                 // tempo minimo de um job
+                int id_job;
+                show_jobs(*list_jobs);
+                printf("\nSelecione o id do job: ");
+                scanf("%d", &id_job);
+                printf("\nTempo minimo do job %d: %d\n", id_job, min_time(*list_opjobs, list_macops, id_job));
                 system("pause");
             }
             system("cls");
