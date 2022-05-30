@@ -62,8 +62,8 @@ void interface_principal();
 void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, Machine **list_machines);
 
 // Funções de cálculo
-int min_time(OpJob *list_opjobs, MacOp **list_macops, int id_job);
-int max_time(Operation **list_operations, MacOp **list_macops);
+int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job);
+int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job);
 float avg_time(MacOp **list_macops, int id_operation);
 
 // Gets

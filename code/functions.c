@@ -1200,27 +1200,28 @@ int min_time(OpJob *list_opjobs, MacOp **list_macops, int id_job)
  * @param list_operations lista das operações
  * @param list_macops lista intermedia entre as operações e as máquinas
  */
-int max_time(Operation **list_operations, MacOp **list_macops)
+int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job)
 {
     int sum = 0, max;
-    Operation *head_op;
     MacOp *head_macop;
 
-    head_op = *list_operations;
-    while (head_op)
+    while (list_opjobs)
     {
-        max = 0;
-        head_macop = *list_macops;
-        while (head_macop)
+        if (list_opjobs->id_job == id_job)
         {
-            if (head_op->id_op == head_macop->id_op && head_macop->time > max)
+            max = 0;
+            head_macop = *list_macops;
+            while (head_macop)
             {
-                max = head_macop->time;
+                if (list_opjobs->id_op == head_macop->id_op && head_macop->time > max)
+                {
+                    max = head_macop->time;
+                }
+                head_macop = head_macop->next;
             }
-            head_macop = head_macop->next;
+            sum += max;
         }
-        sum += max;
-        head_op = head_op->next;
+        list_opjobs = list_opjobs->next;
     }
     return sum;
 }
@@ -1396,7 +1397,6 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 7:
             system("cls");
             {
-                // tempo minimo de um job
                 int id_job;
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
@@ -1410,7 +1410,11 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
         case 8:
             system("cls");
             {
-                // tempo maximo de um job
+                int id_job;
+                show_jobs(*list_jobs);
+                printf("\nSelecione o id do job: ");
+                scanf("%d", &id_job);
+                printf("\nTempo maximo do job %d: %d\n", id_job, max_time(*list_opjobs, list_macops, id_job));
                 system("pause");
             }
             system("cls");
