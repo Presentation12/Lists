@@ -1104,6 +1104,8 @@ Operation *remove_operation(OpJob **list_opjobs, Operation *list_operations, Mac
 MacOp *change_operation(MacOp *list_macops, int id_operation)
 {
     int id_machine, new_time;
+    MacOp *head_macop;
+    head_macop = list_macops;
 
     printf("Selecione a maquina a ser alterado o seu tempo:\n");
     show_machines_by_op_id(list_macops, id_operation);
@@ -1112,16 +1114,19 @@ MacOp *change_operation(MacOp *list_macops, int id_operation)
     printf("\nInsira o novo tempo: ");
     scanf("%d", &new_time);
 
-    while (list_macops)
+    while (head_macop)
     {
-        if (list_macops->id_op == id_operation && list_macops->id_mac == id_machine)
+        if (head_macop->id_op == id_operation && head_macop->id_mac == id_machine)
         {
-            list_macops->time = new_time;
+            head_macop->time = new_time;
         }
-        list_macops = list_macops->next;
+        head_macop = head_macop->next;
     }
 
-    return list_macops;
+    //fica a apontar para o inicio da lista
+    head_macop = list_macops;
+
+    return head_macop;
 }
 
 /**
@@ -1246,7 +1251,7 @@ Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations
                 if (head_opjob->id_job == id_job)
                 {
                     // remoção das restantes ligações nas outras listas (operaçoes e macops)
-                    *list_operations = remove_operation(list_opjobs,*list_operations, list_macops, head_opjob->id_op);
+                    *list_operations = remove_operation(list_opjobs, *list_operations, list_macops, head_opjob->id_op);
 
                     if (head_opjob->next)
                         head_opjob->next->previous = head_opjob->previous;
@@ -1375,6 +1380,14 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
             system("cls");
             {
                 // editar operacao em job
+                int id_job, id_operation;
+                show_jobs(*list_jobs);
+                printf("\nSelecione o id do job: ");
+                scanf("%d", &id_job);
+                show_operations_by_job(*list_opjobs, id_job);
+                printf("\nSelecione o id da operacao a ser removida:");
+                scanf("%d", &id_operation);
+                *list_macops = change_operation(*list_macops, id_operation);
                 system("pause");
             }
             system("cls");
