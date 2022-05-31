@@ -22,16 +22,6 @@ typedef struct list_machine
 } Machine;
 
 /**
- * @brief Estrutura intermedia entre a lista das maquinas e das operações
- *
- */
-typedef struct list_macop
-{
-    int id_op, id_mac, time;
-    struct list_macop *next, *previous;
-} MacOp;
-
-/**
  * @brief Estrutura que representa a lista das operações
  *
  */
@@ -42,24 +32,32 @@ typedef struct list_operation
 } Operation;
 
 /**
- * @brief Estrutura intermedia entre a lista das operações e dos jobs
- * 
- */
-typedef struct list_opjob
-{
-    int id_op;
-    int id_job;
-    struct list_opjob *next, *previous;
-} OpJob;
-
-/**
  * @brief Estrutura que representa a lista dos jobs
- * 
+ *
  */
 typedef struct list_job
 {
     int id_job;
     struct list_job *next, *previous;
 } Job;
+
+/**
+ * @brief Estrutura que contem a conexão das listas jobs,operacoes e maquinas
+ * 
+ */
+typedef struct list_conection
+{
+    int id_job, id_op, id_mac, time;
+    struct list_conection *next, *previous;
+} Connection;
+
+/**
+ * @brief Estrutura que representa uma celula da tabela de planeamento FJSSP
+ * 
+ */
+typedef struct
+{
+    int id_job, id_op, id_mac, t;
+} CelulaPlano;
 
 #endif

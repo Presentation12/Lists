@@ -22,7 +22,7 @@
  */
 Machine *read_machines(Machine *list_machines)
 {
-    FILE *file = fopen("machines.txt", "r");
+    FILE *file = fopen("files/machines.txt", "r");
     Machine *aux = (Machine *)malloc(sizeof(Machine));
 
     if (file == NULL)
@@ -37,7 +37,6 @@ Machine *read_machines(Machine *list_machines)
         return list_machines;
     }
 
-    ///////////////////////////////////////
     int c = fgetc(file);
     if (c == EOF)
     {
@@ -47,7 +46,6 @@ Machine *read_machines(Machine *list_machines)
     {
         ungetc(c, file);
     }
-    ///////////////////////////////////////
 
     while (!feof(file))
     {
@@ -68,7 +66,7 @@ Machine *read_machines(Machine *list_machines)
  */
 Machine *write_machines(Machine *list_machines)
 {
-    FILE *file = fopen("machines.txt", "w");
+    FILE *file = fopen("files/machines.txt", "w");
 
     if (file == NULL)
     {
@@ -88,225 +86,6 @@ Machine *write_machines(Machine *list_machines)
 }
 
 /**
- * @brief Leitura do ficheiro macop.txt e armazenamento em memória
- *
- * @param list_macops Lista que contem os ids de todas as operações e suas respetivas máquinas
- * @return MacOp*
- */
-MacOp *read_macops(MacOp *list_macops)
-{
-    FILE *file = fopen("macop.txt", "r");
-    MacOp *aux = (MacOp *)malloc(sizeof(MacOp));
-
-    if (file == NULL)
-    {
-        printf("Ficheiro não pode ser aberto!\n");
-        getchar();
-        return NULL;
-    }
-
-    if (aux == NULL)
-    {
-        return list_macops;
-    }
-
-    ///////////////////////////////////////
-    int c = fgetc(file);
-    if (c == EOF)
-    {
-        return list_macops;
-    }
-    else
-    {
-        ungetc(c, file);
-    }
-    ///////////////////////////////////////
-
-    while (!feof(file))
-    {
-        fscanf(file, "%d\t%d\t%d\n", &aux->id_op, &aux->id_mac, &aux->time);
-        list_macops = head_insert_macop(list_macops, aux);
-    }
-
-    free(aux);
-    fclose(file);
-    return list_macops;
-}
-
-/**
- * @brief Escrita do ficheiro macop.txt e armazenamento em memória
- *
- * @param list_macops lista intermedia entre as operações e as máquinas
- * @return MacOp*
- */
-MacOp *write_macops(MacOp *list_macops)
-{
-    FILE *file = fopen("macop.txt", "w");
-
-    if (file == NULL)
-    {
-        printf("Ficheiro não pode ser aberto!\n");
-        getchar();
-        return list_macops;
-    }
-
-    while (list_macops)
-    {
-        fprintf(file, "%d\t%d\t%d\n", list_macops->id_op, list_macops->id_mac, list_macops->time);
-        list_macops = list_macops->next;
-    }
-
-    fclose(file);
-    return list_macops;
-}
-
-/**
- * @brief Leitura do ficheiro operations.txt e armazenamento em memória
- *
- * @param list_operations Lista que contem todas as operações
- * @return Operation*
- */
-Operation *read_operations(Operation *list_operations)
-{
-    FILE *file = fopen("operations.txt", "r");
-    Operation *aux = (Operation *)malloc(sizeof(Operation));
-
-    if (file == NULL)
-    {
-        printf("Ficheiro não pode ser aberto!\n");
-        getchar();
-        return NULL;
-    }
-
-    if (aux == NULL)
-    {
-        return list_operations;
-    }
-
-    ///////////////////////////////////////
-    int c = fgetc(file);
-    if (c == EOF)
-    {
-        return list_operations;
-    }
-    else
-    {
-        ungetc(c, file);
-    }
-    ///////////////////////////////////////
-
-    while (!feof(file))
-    {
-        fscanf(file, "%d\n", &aux->id_op);
-        list_operations = head_insert_operation(list_operations, aux);
-    }
-
-    free(aux);
-    fclose(file);
-    return list_operations;
-}
-
-/**
- * @brief Escrita do ficheiro operations.txt e armazenamento em memória
- *
- * @param list_operations lista das operações
- * @return Operation*
- */
-Operation *write_operations(Operation *list_operations)
-{
-    FILE *file = fopen("operations.txt", "w");
-
-    if (file == NULL)
-    {
-        printf("Ficheiro não pode ser aberto!\n");
-        getchar();
-        return list_operations;
-    }
-
-    while (list_operations)
-    {
-        fprintf(file, "%d\n", list_operations->id_op);
-        list_operations = list_operations->next;
-    }
-
-    fclose(file);
-    return list_operations;
-}
-
-/**
- * @brief Leitura do ficheiro opjobs.txt e armazenamento em memória
- *
- * @param list_opjobs Lista intermedia que contem id das operações com id dos jobs
- * @return OpJob*
- */
-OpJob *read_opjobs(OpJob *list_opjobs)
-{
-    FILE *file = fopen("opjobs.txt", "r");
-    OpJob *aux = (OpJob *)malloc(sizeof(OpJob));
-
-    if (file == NULL)
-    {
-        printf("Ficheiro não pode ser aberto!\n");
-        getchar();
-        return NULL;
-    }
-
-    if (aux == NULL)
-    {
-        return list_opjobs;
-    }
-
-    ///////////////////////////////////////
-    int c = fgetc(file);
-    if (c == EOF)
-    {
-        return list_opjobs;
-    }
-    else
-    {
-        ungetc(c, file);
-    }
-    ///////////////////////////////////////
-
-    while (!feof(file))
-    {
-        fscanf(file, "%d\t%d\n", &aux->id_job, &aux->id_op);
-        list_opjobs = head_insert_opjob(list_opjobs, aux);
-    }
-
-    free(aux);
-    fclose(file);
-    return list_opjobs;
-}
-
-/**
- * @brief Escrita do ficheiro opjobs.txt e armazenamento em memória
- *
- * @param list_opjobs
- * @return OpJob*
- */
-OpJob *write_opjobs(OpJob *list_opjobs)
-{
-    FILE *file = fopen("opjobs.txt", "w");
-
-    if (file == NULL)
-    {
-        printf("Ficheiro não pode ser aberto!\n");
-        getchar();
-        return list_opjobs;
-    }
-
-    while (list_opjobs)
-    {
-        fprintf(file, "%d\t%d\n", list_opjobs->id_job, list_opjobs->id_op);
-        list_opjobs = list_opjobs->next;
-    }
-
-    fclose(file);
-    return list_opjobs;
-}
-
-/**
  * @brief Leitura do ficheiro jobs.txt e armazenamento em memória
  *
  * @param list_jobs Lista intermedia que contem jobs
@@ -314,7 +93,7 @@ OpJob *write_opjobs(OpJob *list_opjobs)
  */
 Job *read_jobs(Job *list_jobs)
 {
-    FILE *file = fopen("jobs.txt", "r");
+    FILE *file = fopen("files/jobs.txt", "r");
     Job *aux = (Job *)malloc(sizeof(Job));
 
     if (file == NULL)
@@ -329,7 +108,6 @@ Job *read_jobs(Job *list_jobs)
         return list_jobs;
     }
 
-    ///////////////////////////////////////
     int c = fgetc(file);
     if (c == EOF)
     {
@@ -339,7 +117,6 @@ Job *read_jobs(Job *list_jobs)
     {
         ungetc(c, file);
     }
-    ///////////////////////////////////////
 
     while (!feof(file))
     {
@@ -360,7 +137,7 @@ Job *read_jobs(Job *list_jobs)
  */
 Job *write_jobs(Job *list_jobs)
 {
-    FILE *file = fopen("jobs.txt", "w");
+    FILE *file = fopen("files/jobs.txt", "w");
 
     if (file == NULL)
     {
@@ -377,6 +154,77 @@ Job *write_jobs(Job *list_jobs)
 
     fclose(file);
     return list_jobs;
+}
+
+/**
+ * @brief Leitura do ficheiro connections.txt e armazenamento em memória
+ *
+ * @param list_connections Lista intermedia que contem jobs
+ * @return Connection*
+ */
+Connection *read_connections(Connection *list_connections)
+{
+    FILE *file = fopen("files/connections.txt", "r");
+    Connection *aux = (Connection *)malloc(sizeof(Connection));
+
+    if (file == NULL)
+    {
+        printf("Ficheiro não pode ser aberto!\n");
+        getchar();
+        return NULL;
+    }
+
+    if (aux == NULL)
+    {
+        return list_connections;
+    }
+
+    int c = fgetc(file);
+    if (c == EOF)
+    {
+        return list_connections;
+    }
+    else
+    {
+        ungetc(c, file);
+    }
+
+    while (!feof(file))
+    {
+        fscanf(file, "%d\t%d\t%d\t%d\n", &aux->id_job, &aux->id_op, &aux->id_mac, &aux->time);
+        list_connections = head_insert_connection(list_connections, aux);
+    }
+
+    free(aux);
+    fclose(file);
+    return list_connections;
+}
+
+/**
+ * @brief Escrita do ficheiro connections.txt e armazenamento em memória
+ *
+ * @param list_connections
+ * @return Connection*
+ */
+Connection *write_connections(Connection *list_connections)
+{
+    FILE *file = fopen("files/connections.txt", "w");
+
+    if (file == NULL)
+    {
+        printf("Ficheiro não pode ser aberto!\n");
+        getchar();
+        return list_connections;
+    }
+
+    while (list_connections)
+    {
+        fprintf(file, "%d\t%d\t%d\t%d\n", list_connections->id_job, list_connections->id_op, list_connections->id_mac, list_connections->time);
+        list_connections = list_connections->next;
+    }
+
+    fclose(file);
+    return list_connections;
 }
 
 #pragma endregion
@@ -404,66 +252,6 @@ int free_machines(Machine *list_machines)
 }
 
 /**
- * @brief Desalocar memória ocupada pela lista MacOp
- *
- * @param list_macops lista MacOp
- * @return int
- */
-int free_macops(MacOp *list_macops)
-{
-    MacOp *aux = (MacOp *)malloc(sizeof(MacOp));
-
-    while (list_macops)
-    {
-        aux = list_macops;
-        list_macops = list_macops->next;
-        free(aux);
-    }
-
-    return 1;
-}
-
-/**
- * @brief Desalocar memória ocupada pela lista das operações
- *
- * @param list_operations lista das operações
- * @return int
- */
-int free_operations(Operation *list_operations)
-{
-    Operation *aux = (Operation *)malloc(sizeof(Operation));
-
-    while (list_operations)
-    {
-        aux = list_operations;
-        list_operations = list_operations->next;
-        free(aux);
-    }
-
-    return 1;
-}
-
-/**
- * @brief Desalocar memória ocupada pela lista intermedia opjobs
- *
- * @param list_opjobs lista intermedia de operações e jobs
- * @return int
- */
-int free_opjobs(OpJob *list_opjobs)
-{
-    OpJob *aux = (OpJob *)malloc(sizeof(OpJob));
-
-    while (list_opjobs)
-    {
-        aux = list_opjobs;
-        list_opjobs = list_opjobs->next;
-        free(aux);
-    }
-
-    return 1;
-}
-
-/**
  * @brief Desalocar memória ocupada pela lista de jobs
  *
  * @param list_job lista de jobs
@@ -477,6 +265,26 @@ int free_jobs(Job *list_job)
     {
         aux = list_job;
         list_job = list_job->next;
+        free(aux);
+    }
+
+    return 1;
+}
+
+/**
+ * @brief Desalocar memória ocupada pela lista de conexões
+ *
+ * @param list_connections lista de conexões
+ * @return int
+ */
+int free_connections(Connection *list_connections)
+{
+    Connection *aux = (Connection *)malloc(sizeof(Connection));
+
+    while (list_connections)
+    {
+        aux = list_connections;
+        list_connections = list_connections->next;
         free(aux);
     }
 
@@ -513,84 +321,6 @@ Machine *head_insert_machine(Machine *list_machines, Machine *aux)
 }
 
 /**
- * @brief Inserção á cabeça na lista MacOp
- *
- * @param list_macops Lista MacOp
- * @param aux Lista auxiliar
- * @return MacOp*
- */
-MacOp *head_insert_macop(MacOp *list_macops, MacOp *aux)
-{
-    // Alocagem de memoria para nodo
-    MacOp *tmp = (MacOp *)malloc(sizeof(MacOp));
-
-    // Inserção dos valores a armazenar
-    tmp->id_mac = aux->id_mac;
-    tmp->id_op = aux->id_op;
-    tmp->time = aux->time;
-
-    // Novo nodo aponta para início da lista
-    tmp->next = list_macops;
-    if (tmp->next)
-        tmp->next->previous = tmp;
-    tmp->previous = NULL;
-
-    // Retorno do tmp, pois este agora é o início da lista
-    return tmp;
-}
-
-/**
- * @brief Inserção á cabeça na lista das operações
- *
- * @param list_operations Lista de operações
- * @param aux Lista auxiliar
- * @return Operation*
- */
-Operation *head_insert_operation(Operation *list_operations, Operation *aux)
-{
-    // Alocar memoria para nodo
-    Operation *tmp = (Operation *)malloc(sizeof(Operation));
-
-    // Inserir valores a guardar
-    tmp->id_op = aux->id_op;
-
-    // Novo nodo aponta para início da lista
-    tmp->next = list_operations;
-    if (tmp->next)
-        tmp->next->previous = tmp;
-    tmp->previous = NULL;
-
-    // Retornar o tmp, pois este agora é o início da lista
-    return tmp;
-}
-
-/**
- * @brief Inserção á cabeça na lista intermedia opjobs
- *
- * @param list_opjobs lista intermedia opjobs
- * @param aux Lista auxiliar
- * @return OpJob*
- */
-OpJob *head_insert_opjob(OpJob *list_opjobs, OpJob *aux)
-{
-    // Alocar memoria para nodo
-    OpJob *tmp = (OpJob *)malloc(sizeof(OpJob));
-
-    // Inserir valores a guardar
-    tmp->id_job = aux->id_job;
-    tmp->id_op = aux->id_op;
-
-    // Novo nodo aponta para início da lista
-    tmp->next = list_opjobs;
-    if (tmp->next)
-        tmp->next->previous = tmp;
-    tmp->previous = NULL;
-
-    // Retornar o tmp, pois este agora é o início da lista
-    return tmp;
-}
-
-/**
  * @brief Inserção á cabeça na lista dos jobs
  *
  * @param list_jobs Lista dos jobs
@@ -607,6 +337,34 @@ Job *head_insert_job(Job *list_jobs, Job *aux)
 
     // Novo nodo aponta para início da lista
     tmp->next = list_jobs;
+    if (tmp->next)
+        tmp->next->previous = tmp;
+    tmp->previous = NULL;
+
+    // Retornar o tmp, pois este agora é o início da lista
+    return tmp;
+}
+
+/**
+ * @brief Inserção á cabeça na lista das conexões
+ *
+ * @param list_connections Lista das conexões
+ * @param aux Lista auxiliar
+ * @return Connection*
+ */
+Connection *head_insert_connection(Connection *list_connections, Connection *aux)
+{
+    // Alocar memoria para nodo
+    Connection *tmp = (Connection *)malloc(sizeof(Connection));
+
+    // Inserir valores a guardar
+    tmp->id_job = aux->id_job;
+    tmp->id_op = aux->id_op;
+    tmp->id_mac = aux->id_mac;
+    tmp->time = aux->time;
+
+    // Novo nodo aponta para início da lista
+    tmp->next = list_connections;
     if (tmp->next)
         tmp->next->previous = tmp;
     tmp->previous = NULL;
@@ -643,47 +401,49 @@ int exist_machine(Machine *list_machines, int id_machine)
 }
 
 /**
- * @brief Verifica se um id de uma operação inserido existe na lista das operações
+ * @brief Verifica se um id de uma operação de um job inserido existe na lista das conexões
  *
- * @param list_operations lista das operações
- * @param id_operation id de uma operação inserido
+ * @param list_connections lista das conexões
+ * @param id_operation id da operação selecionado
+ * @param id_job id do job
  * @return int
  */
-int exist_operation(Operation *list_operations, int id_operation)
+int exist_operation(Connection *list_connections, int id_operation, int id_job)
 {
-    while (list_operations)
+    while (list_connections)
     {
-        if (list_operations->id_op == id_operation)
+        if (list_connections->id_op == id_operation && list_connections->id_job == id_job)
         {
             // true
             return 1;
         }
 
-        list_operations = list_operations->next;
+        list_connections = list_connections->next;
     }
     // false
     return 0;
 }
 
 /**
- * @brief Verifica se uma combinação de id_mac e id_op existe na lista MacOp
+ * @brief Verifica se uma combinação de id_mac, id_op e id_job existe na lista das conexões
  *
- * @param list_macops lista intermedia entre as operações e as máquinas
- * @param id_machine id da maquina
+ * @param list_connections lista de conexões
+ * @param id_machine id da máquina
  * @param id_operation id da operação
+ * @param id_job id do job
  * @return int
  */
-int exist_macop(MacOp *list_macops, int id_machine, int id_operation)
+int exist_connection(Connection *list_connections, int id_machine, int id_operation, int id_job)
 {
-    while (list_macops)
+    while (list_connections)
     {
-        if (list_macops->id_op == id_operation && list_macops->id_mac == id_machine)
+        if (list_connections->id_job == id_job && list_connections->id_op == id_operation && list_connections->id_mac == id_machine)
         {
             // true
             return 1;
         }
 
-        list_macops = list_macops->next;
+        list_connections = list_connections->next;
     }
     // false
     return 0;
@@ -694,45 +454,46 @@ int exist_macop(MacOp *list_macops, int id_machine, int id_operation)
 #pragma region GETS
 
 /**
- * @brief Busca o valor maximo para a variavel tempo na lista intermedia macops
+ * @brief Busca o valor maximo para a variavel tempo na lista conexões
  *
- * @param list_macops lista intermedia de maquinas e operações
+ * @param list_macops lista conexões
  * @return int
  */
-int get_max_time(MacOp *list_macops)
+int get_max_time(Connection *list_connections)
 {
     int max = 0;
 
-    while (list_macops)
+    while (list_connections)
     {
-        if (list_macops->time > max)
+        if (list_connections->time > max)
         {
-            max = list_macops->time;
+            max = list_connections->time;
         }
-        list_macops = list_macops->next;
+        list_connections = list_connections->next;
     }
 
     return max;
 }
 
 /**
- * @brief Função para encontrar o próximo id da lista das operações a ser usado por uma nova
+ * @brief Função para encontrar o próximo id da lista das conexões a ser usado por uma nova
  * operação a ser inserida na respetiva função
  *
- * @param list_operation lista de operações
+ * @param list_connections lista das conexões
+ * @param id_job id do job
  * @return int
  */
-int get_new_operation_id(Operation *list_operations)
+int get_new_operation_id(Connection *list_connections, int id_job)
 {
-    int new_id = -1;
-    while (list_operations)
+    int new_id = 0;
+    while (list_connections)
     {
-        if (list_operations->id_op > new_id)
+        if (list_connections->id_op > new_id && list_connections->id_job == id_job)
         {
-            new_id = list_operations->id_op;
+            new_id = list_connections->id_op;
         }
 
-        list_operations = list_operations->next;
+        list_connections = list_connections->next;
     }
     return new_id + 1;
 }
@@ -782,82 +543,27 @@ void show_machines(Machine *list_machines)
 }
 
 /**
- * @brief listagem da lista intermedia entre as operações e as máquinas
+ * @brief Mostra maquinas de uma operação de um job, pelo seu id de operação e id do job
  *
- * @param list_macops Lista MacOp
- */
-void show_macops(MacOp *list_macops)
-{
-    printf("----------------------------------\n");
-    printf("          Lista Intermedia        \n");
-    printf("       (Maquinas e Operacoes) \n");
-    printf("----------------------------------\n");
-    while (list_macops)
-    {
-        printf("ID Operacao: %d / ID Maquina: %d / Time: %d\n", list_macops->id_op, list_macops->id_mac, list_macops->time);
-        list_macops = list_macops->next;
-    }
-    printf("----------------------------------\n");
-}
-
-/**
- * @brief Mostra maquinas de uma operação pelo seu id de operação
- *
- * @param list_macops lista intermedia de operações e maquinas
+ * @param list_connections lista de conexões
  * @param id_operation id da operação
+ * @param id_job id do job
  */
-void show_machines_by_op_id(MacOp *list_macops, int id_operation)
+void show_machines_by_opjob_id(Connection *list_connections, int id_operation, int id_job)
 {
     printf("----------------------------------\n");
     printf("          Lista Intermedia        \n");
-    printf("           (Operacao %d) \n", id_operation);
+    printf("       (Job %d / Operacao %d)     \n", id_job, id_operation);
     printf("----------------------------------\n");
-    while (list_macops)
+    while (list_connections)
     {
-        if (list_macops->id_op == id_operation)
+        if (list_connections->id_op == id_operation && list_connections->id_job == id_job)
         {
-            printf("ID Operacao: %d / ID Maquina: %d / Time: %d\n", list_macops->id_op, list_macops->id_mac, list_macops->time);
+            printf("ID Maquina: %d / Time: %d\n", list_connections->id_mac, list_connections->time);
         }
-        list_macops = list_macops->next;
+        list_connections = list_connections->next;
     }
     printf("----------------------------------\n");
-}
-
-/**
- * @brief Listagem das operações na lista
- *
- * @param list_operations Lista das operações
- */
-void show_operations(Operation *list_operations)
-{
-    printf("-------------------------\n");
-    printf("   Lista das Operacoes   \n");
-    printf("-------------------------\n");
-    while (list_operations)
-    {
-        printf("ID Operacao: %d\n", list_operations->id_op);
-        list_operations = list_operations->next;
-    }
-    printf("-------------------------\n");
-}
-
-/**
- * @brief Listagem da lista intermedia entre operações e jobs
- *
- * @param list_opjobs Lista das op jobs
- */
-void show_opjobs(OpJob *list_opjobs)
-{
-    printf("----------------------------------\n");
-    printf("          Lista Intermedia        \n");
-    printf("         (Operacoes e Jobs) \n");
-    printf("----------------------------------\n");
-    while (list_opjobs)
-    {
-        printf("ID Job: %d / ID Operacao: %d\n", list_opjobs->id_job, list_opjobs->id_op);
-        list_opjobs = list_opjobs->next;
-    }
-    printf("-------------------------\n");
 }
 
 /**
@@ -881,24 +587,70 @@ void show_jobs(Job *list_jobs)
 /**
  * @brief Mostra os ids das operacoes pertencentes a um job passado por id
  *
- * @param list_opjobs lista intermedia de jobs e operacoes
+ * @param list_connections lista de conexões
  * @param id_job id do job
  */
-void show_operations_by_job(OpJob *list_opjobs, int id_job)
+void show_operations_by_job(Connection *list_connections, int id_job)
 {
     printf("----------------------------------\n");
     printf("          Lista Intermedia        \n");
     printf("             (Job %d) \n", id_job);
     printf("----------------------------------\n");
-    while (list_opjobs)
+    while (list_connections)
     {
-        if (list_opjobs->id_job == id_job)
+        if (list_connections->id_job == id_job)
         {
-            printf("ID Operacao: %d\n", list_opjobs->id_op);
+            printf("ID Operacao: %d\n", list_connections->id_op);
         }
-        list_opjobs = list_opjobs->next;
+        list_connections = list_connections->next;
     }
     printf("----------------------------------\n");
+}
+
+/**
+ * @brief Mostra todas as conexões da lista
+ *
+ * @param list_connections Lista de conexões
+ */
+void show_connections(Connection *list_connections)
+{
+    printf("----------------------------------\n");
+    printf("          Lista Conexoes          \n");
+    printf("----------------------------------\n");
+    while (list_connections)
+    {
+        printf("ID Job: %d / ID Operacao: %d / ID Maquina: %d / Duracao: %d\n", list_connections->id_job, list_connections->id_op, list_connections->id_mac, list_connections->time);
+        list_connections = list_connections->next;
+    }
+    printf("----------------------------------\n");
+}
+
+#pragma endregion
+
+#pragma region COUNTS
+
+/**
+ * @brief Conta o numero de vezes que um id de operacao aparece num job
+ *
+ * @param list_connections lista de conexoes
+ * @param id_operation id da operacao
+ * @param id_job id do job
+ * @return int
+ */
+int count_op_ids(Connection *list_connections, int id_operation, int id_job)
+{
+    int count = 0;
+    while (list_connections)
+    {
+        if (list_connections->id_job == id_job && list_connections->id_op == id_operation)
+        {
+            count++;
+        }
+
+        list_connections = list_connections->next;
+    }
+
+    return count;
 }
 
 #pragma endregion
@@ -912,81 +664,67 @@ void show_operations_by_job(OpJob *list_opjobs, int id_job)
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param list_machines lista das máquinas
  */
-Operation *insert_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, Machine *list_machines, int id_job)
+Connection *insert_operation(Connection *list_connections, Machine *list_machines, int id_job)
 {
-    OpJob *head_opjob = malloc(sizeof(OpJob));
-    Operation *head_op = malloc(sizeof(Operation));
-    MacOp *head_macop = malloc(sizeof(MacOp));
+    Connection *head_connection = malloc(sizeof(Connection));
 
-    OpJob *aux_opjob = malloc(sizeof(OpJob));
-    Operation *aux_op = (Operation *)malloc(sizeof(Operation));
-    MacOp *aux_macop = (MacOp *)malloc(sizeof(MacOp));
+    Connection *aux_connection = (Connection *)malloc(sizeof(Connection));
 
-    head_opjob = *list_opjobs;
-    head_op = list_operations;
-    head_macop = *list_macops;
+    head_connection = list_connections;
 
-    aux_macop->id_op = get_new_operation_id(head_op);
-    aux_op->id_op = aux_macop->id_op;
-    aux_opjob->id_op = aux_macop->id_op;
-    aux_opjob->id_job = id_job;
+    aux_connection->id_op = get_new_operation_id(list_connections, id_job);
+    aux_connection->id_job = id_job;
 
     show_machines(list_machines);
     printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
-    scanf("%d", &aux_macop->id_mac);
+    scanf("%d", &aux_connection->id_mac);
 
-    if (aux_macop->id_mac >= 0)
+    if (aux_connection->id_mac >= 0)
     {
-        printf("\nInsira o tempo:");
-        scanf("%d", &aux_macop->time);
-
-        if (exist_machine(list_machines, aux_macop->id_mac))
+        if (exist_machine(list_machines, aux_connection->id_mac))
         {
-            if (exist_macop(*list_macops, aux_macop->id_mac, aux_macop->id_op))
+            printf("\nInsira o tempo:");
+            scanf("%d", &aux_connection->time);
+
+            if (exist_connection(list_connections, aux_connection->id_mac, aux_connection->id_op, aux_connection->id_job))
                 printf("\nEsta combinacaoo ja existe\nNao inserido\n");
             else
             {
-                *list_macops = head_insert_macop(head_macop, aux_macop);
-                head_macop = *list_macops;
+                list_connections = head_insert_connection(head_connection, aux_connection);
+                head_connection = list_connections;
             }
         }
-        else if (aux_macop->id_mac >= 0)
+        else if (aux_connection->id_mac >= 0)
             printf("\nEssa maquina nao existe\n");
     }
 
-    while (aux_macop->id_mac >= 0)
+    while (aux_connection->id_mac >= 0)
     {
         show_machines(list_machines);
         printf("\n\n(Insira numero negativo para terminar de associar mais maquinas)\nSelecione o id da maquina a associar a operacao: ");
-        scanf("%d", &aux_macop->id_mac);
+        scanf("%d", &aux_connection->id_mac);
 
-        if (aux_macop->id_mac >= 0)
+        if (aux_connection->id_mac >= 0)
         {
-            printf("\nInsira o tempo:");
-            scanf("%d", &aux_macop->time);
-
-            if (exist_machine(list_machines, aux_macop->id_mac))
+            if (exist_machine(list_machines, aux_connection->id_mac))
             {
-                if (exist_macop(*list_macops, aux_macop->id_mac, aux_macop->id_op))
-                    printf("\nEsta combinação ja existe\nNao inserido\n");
+                printf("\nInsira o tempo:");
+                scanf("%d", &aux_connection->time);
+
+                if (exist_connection(list_connections, aux_connection->id_mac, aux_connection->id_op, aux_connection->id_job))
+                    printf("\nEsta combinacaoo ja existe\nNao inserido\n");
                 else
                 {
-                    *list_macops = head_insert_macop(head_macop, aux_macop);
-                    head_macop = *list_macops;
+                    list_connections = head_insert_connection(head_connection, aux_connection);
+                    head_connection = list_connections;
                 }
             }
-            else if (aux_macop->id_mac >= 0)
+            else if (aux_connection->id_mac >= 0)
                 printf("\nEssa maquina nao existe\n");
         }
     }
 
-    list_operations = head_insert_operation(head_op, aux_op);
-    *list_opjobs = head_insert_opjob(head_opjob, aux_opjob);
-
-    free(aux_op);
-    free(aux_macop);
-
-    return list_operations;
+    return list_connections;
 }
 
 /**
@@ -996,66 +734,35 @@ Operation *insert_operation(OpJob **list_opjobs, Operation *list_operations, Mac
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param id_operation id da operação a ser removida
  */
-Operation *remove_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, int id_operation)
+Connection *remove_operation(Connection *list_connections, int id_operation, int id_job)
 {
-    OpJob *head_opjob = malloc(sizeof(OpJob));
-    Operation *head_op = malloc(sizeof(Operation));
-    MacOp *head_macop = malloc(sizeof(MacOp));
-
-    head_op = list_operations;
-    while (head_op)
+    Connection *head_connection;
+    head_connection = list_connections;
+    while (head_connection)
     {
-        if (head_op->id_op == id_operation)
+        // ao remover a operaçao as restantes devem decrementar o seu id para normalizar
+        // verifica se ainda existem ops selecionadas para remover
+        if (count_op_ids(head_connection, id_operation, id_job) == 0)
         {
-            head_macop = *list_macops;
-            while (head_macop)
-            {
-                if (head_macop->id_op == id_operation)
-                {
-                    if (head_macop->next)
-                        head_macop->next->previous = head_macop->previous;
-                    if (head_macop->previous)
-                        head_macop->previous->next = head_macop->next;
-                    else
-                        *list_macops = head_macop->next;
-
-                    free(head_macop);
-                }
-
-                head_macop = head_macop->next;
-            }
-
-            if (head_op->next)
-                head_op->next->previous = head_op->previous;
-            if (head_op->previous)
-                head_op->previous->next = head_op->next;
-            else
-                list_operations = head_op->next;
+            head_connection->id_op -= 1;
         }
 
-        head_op = head_op->next;
-    }
-
-    head_opjob = *list_opjobs;
-    while (head_opjob)
-    {
-        if (head_opjob->id_op == id_operation)
+        if (head_connection->id_job == id_job && head_connection->id_op == id_operation)
         {
-            if (head_opjob->next)
-                head_opjob->next->previous = head_opjob->previous;
-            if (head_opjob->previous)
-                head_opjob->previous->next = head_opjob->next;
+            if (head_connection->next)
+                head_connection->next->previous = head_connection->previous;
+            if (head_connection->previous)
+                head_connection->previous->next = head_connection->next;
             else
-                *list_opjobs = head_opjob->next;
+                list_connections = head_connection->next;
         }
 
-        head_opjob = head_opjob->next;
+        head_connection = head_connection->next;
     }
 
-    free(head_op);
-    free(head_opjob);
+    free(head_connection);
 
-    return list_operations;
+    return list_connections;
 }
 
 /**
@@ -1066,53 +773,55 @@ Operation *remove_operation(OpJob **list_opjobs, Operation *list_operations, Mac
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param id_operation id da operação a ser alterada
  */
-MacOp *change_operation(MacOp *list_macops, int id_operation)
+Connection *change_operation(Connection *list_connections, int id_operation, int id_job)
 {
     int id_machine, new_time;
-    MacOp *head_macop;
-    head_macop = list_macops;
+    Connection *head_connection;
+    head_connection = list_connections;
 
     printf("Selecione a maquina a ser alterado o seu tempo:\n");
-    show_machines_by_op_id(list_macops, id_operation);
+    show_machines_by_opjob_id(list_connections, id_operation, id_job);
     scanf("%d", &id_machine);
 
     printf("\nInsira o novo tempo: ");
     scanf("%d", &new_time);
 
-    while (head_macop)
+    while (head_connection)
     {
-        if (head_macop->id_op == id_operation && head_macop->id_mac == id_machine)
+        if (head_connection->id_job == id_job && head_connection->id_op == id_operation && head_connection->id_mac == id_machine)
         {
-            head_macop->time = new_time;
+            head_connection->time = new_time;
         }
-        head_macop = head_macop->next;
+        head_connection = head_connection->next;
     }
 
     // fica a apontar para o inicio da lista
-    head_macop = list_macops;
+    head_connection = list_connections;
 
-    return head_macop;
+    return head_connection;
 }
 
 /**
- * @brief Determinação da quantidade média de unidades de tempo necessárias para completar uma operação,
+ * @brief Determinação da quantidade média de unidades de tempo necessárias para completar uma operação de um job,
  *        considerando todas as alternativas possíveis
  *
- * @param list_macops lista intermedia entre as operações e as máquinas
- * @param id_operation id da operação
+ * @param list_connections lista das conexões
+ * @param id_operation id da operação selecionada
+ * @param id_job id do job selecionado
+ * @return float
  */
-float avg_time(MacOp *list_macops, int id_operation)
+float avg_time(Connection *list_connections, int id_operation, int id_job)
 {
     int sum = 0, count = 0;
 
-    while (list_macops)
+    while (list_connections)
     {
-        if (list_macops->id_op == id_operation)
+        if (list_connections->id_op == id_operation && list_connections->id_job == id_job)
         {
-            sum += list_macops->time;
+            sum += list_connections->time;
             count++;
         }
-        list_macops = list_macops->next;
+        list_connections = list_connections->next;
     }
 
     return (float)sum / count;
@@ -1123,68 +832,70 @@ float avg_time(MacOp *list_macops, int id_operation)
 #pragma region JOB
 
 /**
- * @brief Determinação da quantidade mínima de unidades de tempo necessárias para completar o job e listagem das
- *        respetivas operações
+ * @brief Determinação da quantidade minima de unidades de tempo necessárias para completar o job
  *
- * @param list_operations lista das operações
- * @param list_macops lista intermedia entre as operações e as máquinas
+ * @param list_connections lista das conexões
+ * @param id_job id do job selecionado
+ * @return int
  */
-int min_time(OpJob *list_opjobs, MacOp **list_macops, int id_job)
+int min_time(Connection *list_connections, int id_job)
 {
-    int sum = 0, min;
-    MacOp *head_macop;
+    int sum = 0, min, id_op_rep = -1;
+    Connection *head_connection;
 
-    while (list_opjobs)
+    while (list_connections)
     {
-        if (list_opjobs->id_job == id_job)
+        if (list_connections->id_job == id_job && list_connections->id_op != id_op_rep)
         {
-            min = get_max_time(*list_macops);
-            head_macop = *list_macops;
-            while (head_macop)
+            min = list_connections->time;
+            head_connection = list_connections;
+            while (head_connection)
             {
-                if (list_opjobs->id_op == head_macop->id_op && head_macop->time < min)
+                if (list_connections->id_op == head_connection->id_op && head_connection->time < min && head_connection->id_job == id_job)
                 {
-                    min = head_macop->time;
+                    min = head_connection->time;
+                    id_op_rep = head_connection->id_op;
                 }
-                head_macop = head_macop->next;
+                head_connection = head_connection->next;
             }
             sum += min;
         }
-        list_opjobs = list_opjobs->next;
+        list_connections = list_connections->next;
     }
 
     return sum;
 }
 
 /**
- * @brief Determinação da quantidade máxima de unidades de tempo necessárias para completar o job e listagem das
- *        respetivas operações
+ * @brief Determinação da quantidade máxima de unidades de tempo necessárias para completar o job
  *
- * @param list_operations lista das operações
- * @param list_macops lista intermedia entre as operações e as máquinas
+ * @param list_connections lista das conexões
+ * @param id_job id do job selecionado
+ * @return int
  */
-int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job)
+int max_time(Connection *list_connections, int id_job)
 {
-    int sum = 0, max;
-    MacOp *head_macop;
+    int sum = 0, max, id_op_rep = -1;
+    Connection *head_connection;
 
-    while (list_opjobs)
+    while (list_connections)
     {
-        if (list_opjobs->id_job == id_job)
+        if (list_connections->id_job == id_job && list_connections->id_op != id_op_rep)
         {
             max = 0;
-            head_macop = *list_macops;
-            while (head_macop)
+            head_connection = list_connections;
+            while (head_connection)
             {
-                if (list_opjobs->id_op == head_macop->id_op && head_macop->time > max)
+                if (list_connections->id_op == head_connection->id_op && head_connection->time > max && head_connection->id_job == id_job)
                 {
-                    max = head_macop->time;
+                    max = head_connection->time;
+                    id_op_rep = head_connection->id_op;
                 }
-                head_macop = head_macop->next;
+                head_connection = head_connection->next;
             }
             sum += max;
         }
-        list_opjobs = list_opjobs->next;
+        list_connections = list_connections->next;
     }
     return sum;
 }
@@ -1200,35 +911,32 @@ int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job)
  * @param id_job Id do job a ser removido
  * @return Job*
  */
-Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, int id_job)
+Job *remove_job(Job *list_jobs, Connection **list_connections, int id_job)
 {
     Job *head_job = malloc(sizeof(Job));
-    OpJob *head_opjob = malloc(sizeof(OpJob));
+    Connection *head_connection = malloc(sizeof(Connection));
 
     head_job = list_jobs;
     while (head_job)
     {
         if (head_job->id_job == id_job)
         {
-            head_opjob = *list_opjobs;
-            while (head_opjob)
+            head_connection = *list_connections;
+            while (head_connection)
             {
-                if (head_opjob->id_job == id_job)
+                if (head_connection->id_job == id_job)
                 {
-                    // remoção das restantes ligações nas outras listas (operaçoes e macops)
-                    *list_operations = remove_operation(list_opjobs, *list_operations, list_macops, head_opjob->id_op);
 
-                    if (head_opjob->next)
-                        head_opjob->next->previous = head_opjob->previous;
-                    if (head_opjob->previous)
-                        head_opjob->previous->next = head_opjob->next;
+                    if (head_connection->next)
+                        head_connection->next->previous = head_connection->previous;
+                    if (head_connection->previous)
+                        head_connection->previous->next = head_connection->next;
                     else
-                        *list_opjobs = head_opjob->next;
+                        *list_connections = head_connection->next;
 
-                    free(head_opjob);
+                    free(head_connection);
                 }
-
-                head_opjob = head_opjob->next;
+                head_connection = head_connection->next;
             }
 
             if (head_job->next)
@@ -1238,12 +946,31 @@ Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations
             else
                 list_jobs = head_job->next;
         }
-
         head_job = head_job->next;
     }
     free(head_job);
 
     return list_jobs;
+}
+
+#pragma endregion
+
+#pragma region SIMULATION
+
+int simulation(Connection **list_connections, Job **list_jobs, Operation **list_operations, Machine **list_machines)
+{
+    // percorrer as listas
+    // verificar se maquinas sáo iguais
+    //  se náo forem -> ambas iniciam no instante 0
+    //  se forem -> verificar se tem tempos diferentes
+    //  se m1 tiver mais tempo que m2 -> inicia no instante 0 job/op da m2
+    // se forem iguais -> ???
+    // enviar dados para a celula plano
+    // enviar tudo para html tabelar
+}
+
+int Ocupa(int job, int oper, int maq, int t)
+{
 }
 
 #pragma endregion
@@ -1266,7 +993,15 @@ void interface_principal()
     printf("\n-->");
 }
 
-void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, Machine **list_machines)
+/**
+ * @brief Menu de opcoes
+ *
+ * @param list_jobs lista de jobs
+ * @param list_operations lista de operacoes
+ * @param list_machines lista de maquinas
+ * @param list_connections lista de conexões
+ */
+void menu_principal(Job **list_jobs, Machine **list_machines, Connection **list_connections)
 {
     int op;
     interface_principal();
@@ -1281,10 +1016,8 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
             system("cls");
             {
                 show_jobs(*list_jobs);
-                show_opjobs(*list_opjobs);
-                show_operations(*list_operations);
-                show_macops(*list_macops);
                 show_machines(*list_machines);
+                show_connections(*list_connections);
                 system("pause");
             }
             system("cls");
@@ -1307,7 +1040,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id a remover: ");
                 scanf("%d", &id_job);
-                *list_jobs = remove_job(*list_jobs, list_opjobs, list_operations, list_macops, id_job);
+                *list_jobs = remove_job(*list_jobs, list_connections, id_job);
             }
             system("cls");
             break;
@@ -1319,7 +1052,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
-                *list_operations = insert_operation(list_opjobs, *list_operations, list_macops, *list_machines, id_job);
+                *list_connections = insert_operation(*list_connections, *list_machines, id_job);
                 system("pause");
             }
             system("cls");
@@ -1332,10 +1065,10 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
-                show_operations_by_job(*list_opjobs, id_job);
+                show_operations_by_job(*list_connections, id_job);
                 printf("\nSelecione o id da operacao a ser removida:");
                 scanf("%d", &id_operation);
-                *list_operations = remove_operation(list_opjobs, *list_operations, list_macops, id_operation);
+                *list_connections = remove_operation(*list_connections, id_operation, id_job);
                 system("pause");
             }
             system("cls");
@@ -1348,10 +1081,10 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
-                show_operations_by_job(*list_opjobs, id_job);
+                show_operations_by_job(*list_connections, id_job);
                 printf("\nSelecione o id da operacao:");
                 scanf("%d", &id_operation);
-                *list_macops = change_operation(*list_macops, id_operation);
+                *list_connections = change_operation(*list_connections, id_operation, id_job);
                 system("pause");
             }
             system("cls");
@@ -1364,7 +1097,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
-                printf("\nTempo minimo do job %d: %d\n", id_job, min_time(*list_opjobs, list_macops, id_job));
+                printf("\nTempo minimo do job %d: %d\n", id_job, min_time(*list_connections, id_job));
                 system("pause");
             }
             system("cls");
@@ -1377,7 +1110,7 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
-                printf("\nTempo maximo do job %d: %d\n", id_job, max_time(*list_opjobs, list_macops, id_job));
+                printf("\nTempo maximo do job %d: %d\n", id_job, max_time(*list_connections, id_job));
                 system("pause");
             }
             system("cls");
@@ -1390,10 +1123,10 @@ void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_opera
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
-                show_operations_by_job(*list_opjobs, id_job);
+                show_operations_by_job(*list_connections, id_job);
                 printf("\nSelecione o id da operacao: ");
                 scanf("%d", &id_operation);
-                printf("\nMedia de tempo da operacao id %d: %.2f\n", id_operation, avg_time(*list_macops,id_operation));
+                printf("\nMedia de tempo (Job %d / Operacao %d): %.2f\n", id_job, id_operation, avg_time(*list_connections, id_operation, id_job));
                 system("pause");
             }
             system("cls");

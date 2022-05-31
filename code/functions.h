@@ -12,62 +12,79 @@
 #define FUNCTIONS
 #include "structs.h"
 
-// Funções machines
+#pragma region MACHINES
+
 Machine *read_machines(Machine *listMachine);
 Machine *write_machines(Machine *listMachine);
 int free_machines(Machine *list);
 Machine *head_insert_machine(Machine *list, Machine *aux);
 void show_machines(Machine *list);
 int exist_machine(Machine *list_machines, int id_machine);
-void show_machines_by_op_id(MacOp *list_macops, int id_operation);
 
-// Funções macops
-MacOp *read_macops(MacOp *listMacOp);
-MacOp *write_macops(MacOp *listMacOp);
-int free_macops(MacOp *list);
-MacOp *head_insert_macop(MacOp *list, MacOp *aux);
-void show_macops(MacOp *list);
-int exist_macop(MacOp *list_macops, int id_machine, int id_operation);
+#pragma endregion
 
-// Funções operations
-Operation *read_operations(Operation *listOperation);
-Operation *write_operations(Operation *listOperation);
-int free_operations(Operation *list);
-Operation *head_insert_operation(Operation *list, Operation *aux);
-void show_operations(Operation *list);
-Operation *insert_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, Machine *list_machines, int id_job);
-Operation *remove_operation(OpJob **list_opjobs, Operation *list_operations, MacOp **list_macops, int id_operation);
-MacOp *change_operation(MacOp *list_macops, int id_operation);
-int exist_operation(Operation *list_operations, int id_operation);
-void show_operations_by_job(OpJob *list_opjobs, int id_job);
+#pragma region OPERATIONS
 
-// Funções opjobs
-int free_opjobs(OpJob *list_opjobs);
-OpJob *read_opjobs(OpJob *list_opjobs);
-OpJob *write_opjobs(OpJob *list_opjobs);
-OpJob *head_insert_opjob(OpJob *list_opjobs, OpJob *aux);
-void show_opjobs(OpJob *list_opjobs);
+Connection *remove_operation(Connection *list_connections, int id_operation, int id_job);
+Connection *change_operation(Connection *list_connections, int id_operation, int id_job);
+Connection *insert_operation(Connection *list_connections, Machine *list_machines, int id_job);
 
-// Funções jobs
+#pragma endregion
+
+#pragma region JOBS
+
 int free_jobs(Job *list_job);
 Job *read_jobs(Job *list_jobs);
 Job *write_jobs(Job *list_jobs);
 Job *head_insert_job(Job *list_jobs, Job *aux);
 void show_jobs(Job *list_jobs);
-Job *remove_job(Job *list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, int id_job);
+Job *remove_job(Job *list_jobs, Connection **list_connections, int id_job);
 
-// Funções de interface usuário
+#pragma endregion
+
+#pragma region CONNECTIONS
+
+Connection *read_connections(Connection *list_connections);
+Connection *write_connections(Connection *list_connections);
+int free_connections(Connection *list_connections);
+Connection *head_insert_connection(Connection *list_connections, Connection *aux);
+void show_connections(Connection *list_connections);
+void show_operations_by_job(Connection *list_connections, int id_job);
+void show_machines_by_opjob_id(Connection *list_connections, int id_operation, int id_job);
+int exist_connection(Connection *list_connections, int id_machine, int id_operation, int id_job);
+int exist_operation(Connection *list_connections, int id_operation, int id_job);
+
+#pragma endregion
+
+#pragma region INTERFACE
+
 void interface_principal();
-void menu_principal(Job **list_jobs, OpJob **list_opjobs, Operation **list_operations, MacOp **list_macops, Machine **list_machines);
+void menu_principal(Job **list_jobs, Machine **list_machines, Connection **list_connections);
 
-// Funções de cálculo
-int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job);
-int max_time(OpJob *list_opjobs, MacOp **list_macops, int id_job);
-float avg_time(MacOp *list_macops, int id_operation);
+#pragma endregion
 
-// Gets
-int get_max_time(MacOp *list_macops);
-int get_new_operation_id(Operation *list_operation);
+#pragma region CALCULATIONS
+
+int min_time(Connection *list_connections, int id_job);
+int max_time(Connection *list_connections, int id_job);
+float avg_time(Connection *list_connections, int id_operation, int id_job);
+int count_op_ids(Connection *list_connections, int id_operation, int id_job);
+
+#pragma endregion
+
+#pragma region GET
+
+int get_max_time(Connection *list_connections);
+int get_new_operation_id(Connection *list_connections, int id_job);
 int get_new_job_id(Job *list_jobs);
+
+#pragma endregion
+
+#pragma region SIMULATION
+
+int simulation(Connection **list_connections,Job **list_jobs, Operation **list_operations, Machine **list_machines);
+int Ocupa(int job, int oper, int maq, int t);
+
+#pragma endregion
 
 #endif
