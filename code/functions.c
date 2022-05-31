@@ -592,15 +592,18 @@ void show_jobs(Job *list_jobs)
  */
 void show_operations_by_job(Connection *list_connections, int id_job)
 {
+    int id_op_rep = -1;
+
     printf("----------------------------------\n");
     printf("          Lista Intermedia        \n");
     printf("             (Job %d) \n", id_job);
     printf("----------------------------------\n");
     while (list_connections)
     {
-        if (list_connections->id_job == id_job)
+        if (list_connections->id_job == id_job && list_connections->id_op != id_op_rep)
         {
             printf("ID Operacao: %d\n", list_connections->id_op);
+            id_op_rep = list_connections->id_op;
         }
         list_connections = list_connections->next;
     }
