@@ -719,14 +719,9 @@ Connection *remove_operation(Connection *list_connections, int id_operation, int
 {
     Connection *head_connection;
     head_connection = list_connections;
+    int count = 0;
     while (head_connection)
     {
-        // ao remover a operaçao as restantes devem decrementar o seu id para normalizar
-        // verifica se ainda existem ops selecionadas para remover
-        if (count_op_ids(head_connection, id_operation, id_job) == 0)
-        {
-            head_connection->id_op -= 1;
-        }
 
         if (head_connection->id_job == id_job && head_connection->id_op == id_operation)
         {
@@ -736,6 +731,13 @@ Connection *remove_operation(Connection *list_connections, int id_operation, int
                 head_connection->previous->next = head_connection->next;
             else
                 list_connections = head_connection->next;
+        }
+
+        // ao remover a operaçao as restantes devem decrementar o seu id para normalizar
+        // verifica se ainda existem ops selecionadas para remover
+        if (head_connection->id_op > id_operation && head_connection->id_job == id_job)
+        {
+            head_connection->id_op -= 1;
         }
 
         head_connection = head_connection->next;

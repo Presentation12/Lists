@@ -22,16 +22,6 @@ typedef struct list_machine
 } Machine;
 
 /**
- * @brief Estrutura que representa a lista das operações
- *
- */
-typedef struct list_operation
-{
-    int id_op;
-    struct list_operation *next, *previous;
-} Operation;
-
-/**
  * @brief Estrutura que representa a lista dos jobs
  *
  */
