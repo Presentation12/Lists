@@ -1,0 +1,85 @@
+\hypertarget{functions_8h_source}{}\doxysection{functions.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef FUNCTIONS}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define FUNCTIONS}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{structs_8h}{structs.h}}"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#pragma region MACHINES}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \mbox{\hyperlink{structlist__machine}{Machine}} *\mbox{\hyperlink{functions_8c_a5ed336aef6956ea00cd94e790002e0f1}{read\_machines}}(\mbox{\hyperlink{structlist__machine}{Machine}} *listMachine);}
+\DoxyCodeLine{18 \mbox{\hyperlink{structlist__machine}{Machine}} *\mbox{\hyperlink{functions_8c_accaaa8e679a7282545aff45b94cd11c0}{write\_machines}}(\mbox{\hyperlink{structlist__machine}{Machine}} *listMachine);}
+\DoxyCodeLine{19 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a90247be00ec5d9c48d77211f096255f1}{free\_machines}}(\mbox{\hyperlink{structlist__machine}{Machine}} *list);}
+\DoxyCodeLine{20 \mbox{\hyperlink{structlist__machine}{Machine}} *\mbox{\hyperlink{functions_8c_a1b224dd89ceb0718895653882f334345}{head\_insert\_machine}}(\mbox{\hyperlink{structlist__machine}{Machine}} *list, \mbox{\hyperlink{structlist__machine}{Machine}} *aux);}
+\DoxyCodeLine{21 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a7ce0870bcb3aae4147241af5aa08f988}{show\_machines}}(\mbox{\hyperlink{structlist__machine}{Machine}} *list);}
+\DoxyCodeLine{22 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a5d8e9ce82c5be8b4a6fbb96b52d71198}{exist\_machine}}(\mbox{\hyperlink{structlist__machine}{Machine}} *list\_machines, \textcolor{keywordtype}{int} id\_machine);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#pragma region OPERATIONS}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \mbox{\hyperlink{structlist__conection}{Connection}} *\mbox{\hyperlink{functions_8c_a0a8812096e398bd95c270c161c0e1727}{remove\_operation}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_operation, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{29 \mbox{\hyperlink{structlist__conection}{Connection}} *\mbox{\hyperlink{functions_8c_acef2f7d60e5a61334acfb4ed0506bf6a}{change\_operation}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_operation, \textcolor{keywordtype}{int} id\_job, \textcolor{keywordtype}{int} id\_machine, \textcolor{keywordtype}{int} new\_time);}
+\DoxyCodeLine{30 \mbox{\hyperlink{structlist__conection}{Connection}} *\mbox{\hyperlink{functions_8c_ab108eafe13c0ab505f09d8c52dcbf6c4}{insert\_operation}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \mbox{\hyperlink{structlist__machine}{Machine}} *list\_machines, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#pragma region JOBS}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_aba4b6984a5bdd7a145d059f944b09460}{free\_jobs}}(\mbox{\hyperlink{structlist__job}{Job}} *\mbox{\hyperlink{structlist__job}{list\_job}});}
+\DoxyCodeLine{37 \mbox{\hyperlink{structlist__job}{Job}} *\mbox{\hyperlink{functions_8c_a1df779c16bb238a5fb9e6af4c44383c4}{read\_jobs}}(\mbox{\hyperlink{structlist__job}{Job}} *list\_jobs);}
+\DoxyCodeLine{38 \mbox{\hyperlink{structlist__job}{Job}} *\mbox{\hyperlink{functions_8c_aeadcae57ded0f39448a5313f202654ca}{write\_jobs}}(\mbox{\hyperlink{structlist__job}{Job}} *list\_jobs);}
+\DoxyCodeLine{39 \mbox{\hyperlink{structlist__job}{Job}} *\mbox{\hyperlink{functions_8c_ad99b175bb419b4f4f187bb20cb2e3b44}{head\_insert\_job}}(\mbox{\hyperlink{structlist__job}{Job}} *list\_jobs, \mbox{\hyperlink{structlist__job}{Job}} *aux);}
+\DoxyCodeLine{40 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a1e4733d691494de7101869b470436688}{show\_jobs}}(\mbox{\hyperlink{structlist__job}{Job}} *list\_jobs);}
+\DoxyCodeLine{41 \mbox{\hyperlink{structlist__job}{Job}} *\mbox{\hyperlink{functions_8c_aa6b903a9240510caec9de1b3d75dd56c}{remove\_job}}(\mbox{\hyperlink{structlist__job}{Job}} *list\_jobs, \mbox{\hyperlink{structlist__conection}{Connection}} **list\_connections, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#pragma region CONNECTIONS}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \mbox{\hyperlink{structlist__conection}{Connection}} *\mbox{\hyperlink{functions_8c_ad415d52cf17c6994685156f27136b61d}{read\_connections}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections);}
+\DoxyCodeLine{48 \mbox{\hyperlink{structlist__conection}{Connection}} *\mbox{\hyperlink{functions_8c_a0cefb94b386b506ad385c2391f36c22b}{write\_connections}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections);}
+\DoxyCodeLine{49 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a8b98763b1fb17fc315f0fae289eeda6e}{free\_connections}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections);}
+\DoxyCodeLine{50 \mbox{\hyperlink{structlist__conection}{Connection}} *\mbox{\hyperlink{functions_8c_ae6589e16e3b950ac1a2093f2f2c4d462}{head\_insert\_connection}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \mbox{\hyperlink{structlist__conection}{Connection}} *aux);}
+\DoxyCodeLine{51 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_aecbfcb27cce073131bb676452f75ddf7}{show\_connections}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections);}
+\DoxyCodeLine{52 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a1f1785850bee8961d115091f1a18ea30}{show\_operations\_by\_job}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{53 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a1dd62439b60d5706aba6acef92754a92}{show\_machines\_by\_opjob\_id}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_operation, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{54 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a40c24c865f70a75c7de55843a7e1b651}{exist\_connection}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_machine, \textcolor{keywordtype}{int} id\_operation, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{55 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_aebe715805248c2924feb3fc30365b941}{exist\_operation}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_operation, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#pragma region INTERFACE}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_adb7084d690467340569336b65b6a20c5}{interface\_principal}}();}
+\DoxyCodeLine{62 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8c_a89e80dc6f9ab1c869c2778aace1a5c1f}{menu\_principal}}(\mbox{\hyperlink{structlist__job}{Job}} **list\_jobs, \mbox{\hyperlink{structlist__machine}{Machine}} **list\_machines, \mbox{\hyperlink{structlist__conection}{Connection}} **list\_connections);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#pragma region CALCULATIONS}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a698cfa33742cfce5e0f915ce8a56b8b4}{min\_time}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{69 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_abdd5ede187ef68439aa2d1a7627ae9c2}{max\_time}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{70 \textcolor{keywordtype}{float} \mbox{\hyperlink{functions_8c_a4628dc957d8ba01708017ca49f91a2c1}{avg\_time}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_operation, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{71 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_aee8320449c0ac27dc953836af39d06cf}{count\_op\_ids}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_operation, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#pragma region GET}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_ae7ab3cb823e050f01c8f6f2515b66b4a}{get\_new\_operation\_id}}(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections, \textcolor{keywordtype}{int} id\_job);}
+\DoxyCodeLine{78 \textcolor{keywordtype}{int} \mbox{\hyperlink{functions_8c_a45c9d3826a20716bb20974433af5886d}{get\_new\_job\_id}}(\mbox{\hyperlink{structlist__job}{Job}} *list\_jobs);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#pragma region SIMULATION}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keywordtype}{int} simulation(\mbox{\hyperlink{structlist__conection}{Connection}} *list\_connections);}
+\DoxyCodeLine{85 \textcolor{keywordtype}{int} Ocupa(\textcolor{keywordtype}{int} job, \textcolor{keywordtype}{int} oper, \textcolor{keywordtype}{int} maq, \textcolor{keywordtype}{int} t);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

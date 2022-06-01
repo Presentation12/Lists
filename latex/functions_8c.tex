@@ -1,0 +1,736 @@
+\hypertarget{functions_8c}{}\doxysection{functions.\+c File Reference}
+\label{functions_8c}\index{functions.c@{functions.c}}
+
+
+Funções do programa.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}functions.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$ \mbox{\hyperlink{functions_8c_a5ed336aef6956ea00cd94e790002e0f1}{read\+\_\+machines}} (\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$list\+\_\+machines)
+\begin{DoxyCompactList}\small\item\em Leitura do ficheiro machines.\+txt e armazenamento em memória. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$ \mbox{\hyperlink{functions_8c_accaaa8e679a7282545aff45b94cd11c0}{write\+\_\+machines}} (\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$list\+\_\+machines)
+\begin{DoxyCompactList}\small\item\em Escrita do ficheiro machines.\+txt e armazenamento em memória. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$ \mbox{\hyperlink{functions_8c_a1df779c16bb238a5fb9e6af4c44383c4}{read\+\_\+jobs}} (\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$list\+\_\+jobs)
+\begin{DoxyCompactList}\small\item\em Leitura do ficheiro jobs.\+txt e armazenamento em memória. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$ \mbox{\hyperlink{functions_8c_aeadcae57ded0f39448a5313f202654ca}{write\+\_\+jobs}} (\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$list\+\_\+jobs)
+\begin{DoxyCompactList}\small\item\em Escrita do ficheiro opjobs.\+txt e armazenamento em memória. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ \mbox{\hyperlink{functions_8c_ad415d52cf17c6994685156f27136b61d}{read\+\_\+connections}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections)
+\begin{DoxyCompactList}\small\item\em Leitura do ficheiro connections.\+txt e armazenamento em memória. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ \mbox{\hyperlink{functions_8c_a0cefb94b386b506ad385c2391f36c22b}{write\+\_\+connections}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections)
+\begin{DoxyCompactList}\small\item\em Escrita do ficheiro connections.\+txt e armazenamento em memória. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_a90247be00ec5d9c48d77211f096255f1}{free\+\_\+machines}} (\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$list\+\_\+machines)
+\begin{DoxyCompactList}\small\item\em Desalocar memória ocupada pela lista das máquinas. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_aba4b6984a5bdd7a145d059f944b09460}{free\+\_\+jobs}} (\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$\mbox{\hyperlink{structlist__job}{list\+\_\+job}})
+\begin{DoxyCompactList}\small\item\em Desalocar memória ocupada pela lista de jobs. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_a8b98763b1fb17fc315f0fae289eeda6e}{free\+\_\+connections}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections)
+\begin{DoxyCompactList}\small\item\em Desalocar memória ocupada pela lista de conexões. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$ \mbox{\hyperlink{functions_8c_a1b224dd89ceb0718895653882f334345}{head\+\_\+insert\+\_\+machine}} (\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$list\+\_\+machines, \mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$aux)
+\begin{DoxyCompactList}\small\item\em Inserção á cabeça na lista das máquinas. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$ \mbox{\hyperlink{functions_8c_ad99b175bb419b4f4f187bb20cb2e3b44}{head\+\_\+insert\+\_\+job}} (\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$list\+\_\+jobs, \mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$aux)
+\begin{DoxyCompactList}\small\item\em Inserção á cabeça na lista dos jobs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ \mbox{\hyperlink{functions_8c_ae6589e16e3b950ac1a2093f2f2c4d462}{head\+\_\+insert\+\_\+connection}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$aux)
+\begin{DoxyCompactList}\small\item\em Inserção á cabeça na lista das conexões. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_a5d8e9ce82c5be8b4a6fbb96b52d71198}{exist\+\_\+machine}} (\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$list\+\_\+machines, int id\+\_\+machine)
+\begin{DoxyCompactList}\small\item\em Verifica se um id de uma maquina inserido existe na lista das maquinas. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_aebe715805248c2924feb3fc30365b941}{exist\+\_\+operation}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+operation, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Verifica se um id de uma operação de um job inserido existe na lista das conexões. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_a40c24c865f70a75c7de55843a7e1b651}{exist\+\_\+connection}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+machine, int id\+\_\+operation, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Verifica se uma combinação de id\+\_\+mac, id\+\_\+op e id\+\_\+job existe na lista das conexões. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_ae7ab3cb823e050f01c8f6f2515b66b4a}{get\+\_\+new\+\_\+operation\+\_\+id}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Função para encontrar o próximo id da lista das conexões a ser usado por uma nova operação a ser inserida na respetiva função. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_a45c9d3826a20716bb20974433af5886d}{get\+\_\+new\+\_\+job\+\_\+id}} (\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$list\+\_\+jobs)
+\begin{DoxyCompactList}\small\item\em Função para encontrar o próximo id da lista jobs a ser usado por um novo job a ser inserida na respetiva função. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8c_a7ce0870bcb3aae4147241af5aa08f988}{show\+\_\+machines}} (\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$list\+\_\+machines)
+\begin{DoxyCompactList}\small\item\em Listagem das máquinas na lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8c_a1dd62439b60d5706aba6acef92754a92}{show\+\_\+machines\+\_\+by\+\_\+opjob\+\_\+id}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+operation, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Mostra maquinas de uma operação de um job, pelo seu id de operação e id do job. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8c_a1e4733d691494de7101869b470436688}{show\+\_\+jobs}} (\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$list\+\_\+jobs)
+\begin{DoxyCompactList}\small\item\em Listagem dos jobs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8c_a1f1785850bee8961d115091f1a18ea30}{show\+\_\+operations\+\_\+by\+\_\+job}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Mostra os ids das operacoes pertencentes a um job passado por id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8c_aecbfcb27cce073131bb676452f75ddf7}{show\+\_\+connections}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections)
+\begin{DoxyCompactList}\small\item\em Mostra todas as conexões da lista. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_aee8320449c0ac27dc953836af39d06cf}{count\+\_\+op\+\_\+ids}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+operation, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Conta o numero de vezes que um id de operacao aparece num job. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ \mbox{\hyperlink{functions_8c_ab108eafe13c0ab505f09d8c52dcbf6c4}{insert\+\_\+operation}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, \mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$list\+\_\+machines, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Inserção de uma operação na lista das operações e lista Mac\+Op. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ \mbox{\hyperlink{functions_8c_a0a8812096e398bd95c270c161c0e1727}{remove\+\_\+operation}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+operation, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Remoção de uma operação da lista operações e respetivamente da lista intermedia Mac\+Op. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ \mbox{\hyperlink{functions_8c_acef2f7d60e5a61334acfb4ed0506bf6a}{change\+\_\+operation}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+operation, int id\+\_\+job, int id\+\_\+machine, int new\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Alteração de uma operação da lista operações Altera os tempos de máquinas que selecione. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{functions_8c_a4628dc957d8ba01708017ca49f91a2c1}{avg\+\_\+time}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+operation, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Determinação da quantidade média de unidades de tempo necessárias para completar uma operação de um job, considerando todas as alternativas possíveis. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_a698cfa33742cfce5e0f915ce8a56b8b4}{min\+\_\+time}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Determinação da quantidade minima de unidades de tempo necessárias para completar o job. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{functions_8c_abdd5ede187ef68439aa2d1a7627ae9c2}{max\+\_\+time}} (\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$list\+\_\+connections, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Determinação da quantidade máxima de unidades de tempo necessárias para completar o job. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$ \mbox{\hyperlink{functions_8c_aa6b903a9240510caec9de1b3d75dd56c}{remove\+\_\+job}} (\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$list\+\_\+jobs, \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$$\ast$list\+\_\+connections, int id\+\_\+job)
+\begin{DoxyCompactList}\small\item\em Remoção de um job Sucessidamente ira remover das restantes listas a ligações. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8c_adb7084d690467340569336b65b6a20c5}{interface\+\_\+principal}} ()
+\begin{DoxyCompactList}\small\item\em texto apresentado ao utilizador no Menu principal \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8c_a89e80dc6f9ab1c869c2778aace1a5c1f}{menu\+\_\+principal}} (\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$$\ast$list\+\_\+jobs, \mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$$\ast$list\+\_\+machines, \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$$\ast$list\+\_\+connections)
+\begin{DoxyCompactList}\small\item\em Menu de opcoes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Funções do programa. 
+
+\begin{DoxyAuthor}{Author}
+João Apresentação (\href{mailto:a21152@alunos.ipca.pt}{\texttt{ a21152@alunos.\+ipca.\+pt}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/03-\/26
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{functions_8c_a4628dc957d8ba01708017ca49f91a2c1}\label{functions_8c_a4628dc957d8ba01708017ca49f91a2c1}} 
+\index{functions.c@{functions.c}!avg\_time@{avg\_time}}
+\index{avg\_time@{avg\_time}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{avg\_time()}{avg\_time()}}
+{\footnotesize\ttfamily float avg\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+operation,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Determinação da quantidade média de unidades de tempo necessárias para completar uma operação de um job, considerando todas as alternativas possíveis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista das conexões \\
+\hline
+{\em id\+\_\+operation} & id da operação selecionada \\
+\hline
+{\em id\+\_\+job} & id do job selecionado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_acef2f7d60e5a61334acfb4ed0506bf6a}\label{functions_8c_acef2f7d60e5a61334acfb4ed0506bf6a}} 
+\index{functions.c@{functions.c}!change\_operation@{change\_operation}}
+\index{change\_operation@{change\_operation}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{change\_operation()}{change\_operation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ change\+\_\+operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+operation,  }\item[{int}]{id\+\_\+job,  }\item[{int}]{id\+\_\+machine,  }\item[{int}]{new\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Alteração de uma operação da lista operações Altera os tempos de máquinas que selecione. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+operations} & lista das operações \\
+\hline
+{\em list\+\_\+macops} & lista intermedia entre as operações e as máquinas \\
+\hline
+{\em id\+\_\+operation} & id da operação a ser alterada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_aee8320449c0ac27dc953836af39d06cf}\label{functions_8c_aee8320449c0ac27dc953836af39d06cf}} 
+\index{functions.c@{functions.c}!count\_op\_ids@{count\_op\_ids}}
+\index{count\_op\_ids@{count\_op\_ids}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{count\_op\_ids()}{count\_op\_ids()}}
+{\footnotesize\ttfamily int count\+\_\+op\+\_\+ids (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+operation,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Conta o numero de vezes que um id de operacao aparece num job. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista de conexoes \\
+\hline
+{\em id\+\_\+operation} & id da operacao \\
+\hline
+{\em id\+\_\+job} & id do job \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a40c24c865f70a75c7de55843a7e1b651}\label{functions_8c_a40c24c865f70a75c7de55843a7e1b651}} 
+\index{functions.c@{functions.c}!exist\_connection@{exist\_connection}}
+\index{exist\_connection@{exist\_connection}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{exist\_connection()}{exist\_connection()}}
+{\footnotesize\ttfamily int exist\+\_\+connection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+machine,  }\item[{int}]{id\+\_\+operation,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Verifica se uma combinação de id\+\_\+mac, id\+\_\+op e id\+\_\+job existe na lista das conexões. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista de conexões \\
+\hline
+{\em id\+\_\+machine} & id da máquina \\
+\hline
+{\em id\+\_\+operation} & id da operação \\
+\hline
+{\em id\+\_\+job} & id do job \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a5d8e9ce82c5be8b4a6fbb96b52d71198}\label{functions_8c_a5d8e9ce82c5be8b4a6fbb96b52d71198}} 
+\index{functions.c@{functions.c}!exist\_machine@{exist\_machine}}
+\index{exist\_machine@{exist\_machine}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{exist\_machine()}{exist\_machine()}}
+{\footnotesize\ttfamily int exist\+\_\+machine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$}]{list\+\_\+machines,  }\item[{int}]{id\+\_\+machine }\end{DoxyParamCaption})}
+
+
+
+Verifica se um id de uma maquina inserido existe na lista das maquinas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+machines} & lista das máquinas \\
+\hline
+{\em id\+\_\+machine} & id de uma máquina inserido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_aebe715805248c2924feb3fc30365b941}\label{functions_8c_aebe715805248c2924feb3fc30365b941}} 
+\index{functions.c@{functions.c}!exist\_operation@{exist\_operation}}
+\index{exist\_operation@{exist\_operation}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{exist\_operation()}{exist\_operation()}}
+{\footnotesize\ttfamily int exist\+\_\+operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+operation,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Verifica se um id de uma operação de um job inserido existe na lista das conexões. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista das conexões \\
+\hline
+{\em id\+\_\+operation} & id da operação selecionado \\
+\hline
+{\em id\+\_\+job} & id do job \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a8b98763b1fb17fc315f0fae289eeda6e}\label{functions_8c_a8b98763b1fb17fc315f0fae289eeda6e}} 
+\index{functions.c@{functions.c}!free\_connections@{free\_connections}}
+\index{free\_connections@{free\_connections}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{free\_connections()}{free\_connections()}}
+{\footnotesize\ttfamily int free\+\_\+connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections }\end{DoxyParamCaption})}
+
+
+
+Desalocar memória ocupada pela lista de conexões. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista de conexões \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_aba4b6984a5bdd7a145d059f944b09460}\label{functions_8c_aba4b6984a5bdd7a145d059f944b09460}} 
+\index{functions.c@{functions.c}!free\_jobs@{free\_jobs}}
+\index{free\_jobs@{free\_jobs}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{free\_jobs()}{free\_jobs()}}
+{\footnotesize\ttfamily int free\+\_\+jobs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$}]{list\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Desalocar memória ocupada pela lista de jobs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structlist__job}{list\+\_\+job}}} & lista de jobs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a90247be00ec5d9c48d77211f096255f1}\label{functions_8c_a90247be00ec5d9c48d77211f096255f1}} 
+\index{functions.c@{functions.c}!free\_machines@{free\_machines}}
+\index{free\_machines@{free\_machines}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{free\_machines()}{free\_machines()}}
+{\footnotesize\ttfamily int free\+\_\+machines (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$}]{list\+\_\+machines }\end{DoxyParamCaption})}
+
+
+
+Desalocar memória ocupada pela lista das máquinas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+machines} & lista das máquinas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a45c9d3826a20716bb20974433af5886d}\label{functions_8c_a45c9d3826a20716bb20974433af5886d}} 
+\index{functions.c@{functions.c}!get\_new\_job\_id@{get\_new\_job\_id}}
+\index{get\_new\_job\_id@{get\_new\_job\_id}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{get\_new\_job\_id()}{get\_new\_job\_id()}}
+{\footnotesize\ttfamily int get\+\_\+new\+\_\+job\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$}]{list\+\_\+jobs }\end{DoxyParamCaption})}
+
+
+
+Função para encontrar o próximo id da lista jobs a ser usado por um novo job a ser inserida na respetiva função. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+jobs} & lista dos jobs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_ae7ab3cb823e050f01c8f6f2515b66b4a}\label{functions_8c_ae7ab3cb823e050f01c8f6f2515b66b4a}} 
+\index{functions.c@{functions.c}!get\_new\_operation\_id@{get\_new\_operation\_id}}
+\index{get\_new\_operation\_id@{get\_new\_operation\_id}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{get\_new\_operation\_id()}{get\_new\_operation\_id()}}
+{\footnotesize\ttfamily int get\+\_\+new\+\_\+operation\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Função para encontrar o próximo id da lista das conexões a ser usado por uma nova operação a ser inserida na respetiva função. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista das conexões \\
+\hline
+{\em id\+\_\+job} & id do job \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_ae6589e16e3b950ac1a2093f2f2c4d462}\label{functions_8c_ae6589e16e3b950ac1a2093f2f2c4d462}} 
+\index{functions.c@{functions.c}!head\_insert\_connection@{head\_insert\_connection}}
+\index{head\_insert\_connection@{head\_insert\_connection}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{head\_insert\_connection()}{head\_insert\_connection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ head\+\_\+insert\+\_\+connection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{aux }\end{DoxyParamCaption})}
+
+
+
+Inserção á cabeça na lista das conexões. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & Lista das conexões \\
+\hline
+{\em aux} & Lista auxiliar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Connection$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_ad99b175bb419b4f4f187bb20cb2e3b44}\label{functions_8c_ad99b175bb419b4f4f187bb20cb2e3b44}} 
+\index{functions.c@{functions.c}!head\_insert\_job@{head\_insert\_job}}
+\index{head\_insert\_job@{head\_insert\_job}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{head\_insert\_job()}{head\_insert\_job()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$ head\+\_\+insert\+\_\+job (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$}]{list\+\_\+jobs,  }\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$}]{aux }\end{DoxyParamCaption})}
+
+
+
+Inserção á cabeça na lista dos jobs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+jobs} & Lista dos jobs \\
+\hline
+{\em aux} & Lista auxiliar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Job$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a1b224dd89ceb0718895653882f334345}\label{functions_8c_a1b224dd89ceb0718895653882f334345}} 
+\index{functions.c@{functions.c}!head\_insert\_machine@{head\_insert\_machine}}
+\index{head\_insert\_machine@{head\_insert\_machine}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{head\_insert\_machine()}{head\_insert\_machine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$ head\+\_\+insert\+\_\+machine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$}]{list\+\_\+machines,  }\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$}]{aux }\end{DoxyParamCaption})}
+
+
+
+Inserção á cabeça na lista das máquinas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+machines} & Lista das máquinas \\
+\hline
+{\em aux} & Lista auxiliar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Machine$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_ab108eafe13c0ab505f09d8c52dcbf6c4}\label{functions_8c_ab108eafe13c0ab505f09d8c52dcbf6c4}} 
+\index{functions.c@{functions.c}!insert\_operation@{insert\_operation}}
+\index{insert\_operation@{insert\_operation}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{insert\_operation()}{insert\_operation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ insert\+\_\+operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$}]{list\+\_\+machines,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Inserção de uma operação na lista das operações e lista Mac\+Op. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+operations} & lista das operações \\
+\hline
+{\em list\+\_\+macops} & lista intermedia entre as operações e as máquinas \\
+\hline
+{\em list\+\_\+machines} & lista das máquinas \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_adb7084d690467340569336b65b6a20c5}\label{functions_8c_adb7084d690467340569336b65b6a20c5}} 
+\index{functions.c@{functions.c}!interface\_principal@{interface\_principal}}
+\index{interface\_principal@{interface\_principal}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{interface\_principal()}{interface\_principal()}}
+{\footnotesize\ttfamily void interface\+\_\+principal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+texto apresentado ao utilizador no Menu principal 
+
+int simulation(\+Connection $\ast$list\+\_\+connections) \{ percorrer as listas verificar se maquinas sáo iguais se náo forem -\/\texorpdfstring{$>$}{>} ambas iniciam no instante 0 se forem -\/\texorpdfstring{$>$}{>} verificar se tem tempos diferentes se m1 tiver mais tempo que m2 -\/\texorpdfstring{$>$}{>} inicia no instante 0 job/op da m2 se forem iguais -\/\texorpdfstring{$>$}{>} ??? enviar dados para a celula plano enviar tudo para html tabelar \begin{DoxyVerb}int id_mac = 0, time;
+CelulaPlano simulation[][];
+Connection *head_connection, *head_connection2, *aux;
+
+while (mac != get_last_mac())
+{
+    head_connection = *list_connections;
+    while (head_connection)
+    {
+        if (head_connection->id_mac == id_mac)
+        {
+            head_connection2 = *list_connections;
+            time = head_connection->time;
+            while (head_connection2)
+            {
+                if (head_connection->id_op == head_connection2->id_op && head_connection2->time < time)
+                {
+                    aux = head_connection2;
+                }
+
+                head_connection2 = head_connection2->next;
+            }
+            simulation[aux->id_mac][t];
+
+        }
+
+        head_connection = head_connection->next;
+    }
+
+    id_mac++;
+}
+\end{DoxyVerb}
+ \}
+
+int Ocupa(int job, int oper, int maq, int t) \{ \} \mbox{\Hypertarget{functions_8c_abdd5ede187ef68439aa2d1a7627ae9c2}\label{functions_8c_abdd5ede187ef68439aa2d1a7627ae9c2}} 
+\index{functions.c@{functions.c}!max\_time@{max\_time}}
+\index{max\_time@{max\_time}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{max\_time()}{max\_time()}}
+{\footnotesize\ttfamily int max\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Determinação da quantidade máxima de unidades de tempo necessárias para completar o job. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista das conexões \\
+\hline
+{\em id\+\_\+job} & id do job selecionado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a89e80dc6f9ab1c869c2778aace1a5c1f}\label{functions_8c_a89e80dc6f9ab1c869c2778aace1a5c1f}} 
+\index{functions.c@{functions.c}!menu\_principal@{menu\_principal}}
+\index{menu\_principal@{menu\_principal}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{menu\_principal()}{menu\_principal()}}
+{\footnotesize\ttfamily void menu\+\_\+principal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$$\ast$}]{list\+\_\+jobs,  }\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$$\ast$}]{list\+\_\+machines,  }\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$$\ast$}]{list\+\_\+connections }\end{DoxyParamCaption})}
+
+
+
+Menu de opcoes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+jobs} & lista de jobs \\
+\hline
+{\em list\+\_\+operations} & lista de operacoes \\
+\hline
+{\em list\+\_\+machines} & lista de maquinas \\
+\hline
+{\em list\+\_\+connections} & lista de conexões \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_a698cfa33742cfce5e0f915ce8a56b8b4}\label{functions_8c_a698cfa33742cfce5e0f915ce8a56b8b4}} 
+\index{functions.c@{functions.c}!min\_time@{min\_time}}
+\index{min\_time@{min\_time}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{min\_time()}{min\_time()}}
+{\footnotesize\ttfamily int min\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Determinação da quantidade minima de unidades de tempo necessárias para completar o job. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista das conexões \\
+\hline
+{\em id\+\_\+job} & id do job selecionado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_ad415d52cf17c6994685156f27136b61d}\label{functions_8c_ad415d52cf17c6994685156f27136b61d}} 
+\index{functions.c@{functions.c}!read\_connections@{read\_connections}}
+\index{read\_connections@{read\_connections}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{read\_connections()}{read\_connections()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ read\+\_\+connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections }\end{DoxyParamCaption})}
+
+
+
+Leitura do ficheiro connections.\+txt e armazenamento em memória. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & Lista intermedia que contem jobs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Connection$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a1df779c16bb238a5fb9e6af4c44383c4}\label{functions_8c_a1df779c16bb238a5fb9e6af4c44383c4}} 
+\index{functions.c@{functions.c}!read\_jobs@{read\_jobs}}
+\index{read\_jobs@{read\_jobs}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{read\_jobs()}{read\_jobs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$ read\+\_\+jobs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$}]{list\+\_\+jobs }\end{DoxyParamCaption})}
+
+
+
+Leitura do ficheiro jobs.\+txt e armazenamento em memória. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+jobs} & Lista intermedia que contem jobs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Job$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a5ed336aef6956ea00cd94e790002e0f1}\label{functions_8c_a5ed336aef6956ea00cd94e790002e0f1}} 
+\index{functions.c@{functions.c}!read\_machines@{read\_machines}}
+\index{read\_machines@{read\_machines}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{read\_machines()}{read\_machines()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$ read\+\_\+machines (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$}]{list\+\_\+machines }\end{DoxyParamCaption})}
+
+
+
+Leitura do ficheiro machines.\+txt e armazenamento em memória. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+machines} & Lista que contem todas as máquinas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Machine$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_aa6b903a9240510caec9de1b3d75dd56c}\label{functions_8c_aa6b903a9240510caec9de1b3d75dd56c}} 
+\index{functions.c@{functions.c}!remove\_job@{remove\_job}}
+\index{remove\_job@{remove\_job}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{remove\_job()}{remove\_job()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$ remove\+\_\+job (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$}]{list\+\_\+jobs,  }\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$$\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Remoção de um job Sucessidamente ira remover das restantes listas a ligações. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+jobs} & Lista de jobs \\
+\hline
+{\em list\+\_\+opjobs} & Lista intermedia de jobs e operações \\
+\hline
+{\em list\+\_\+operations} & Lista de operações \\
+\hline
+{\em list\+\_\+macops} & Lista intermedia de máquinas e operações \\
+\hline
+{\em id\+\_\+job} & Id do job a ser removido \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Job$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_a0a8812096e398bd95c270c161c0e1727}\label{functions_8c_a0a8812096e398bd95c270c161c0e1727}} 
+\index{functions.c@{functions.c}!remove\_operation@{remove\_operation}}
+\index{remove\_operation@{remove\_operation}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{remove\_operation()}{remove\_operation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ remove\+\_\+operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+operation,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Remoção de uma operação da lista operações e respetivamente da lista intermedia Mac\+Op. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+operations} & lista das operações \\
+\hline
+{\em list\+\_\+macops} & lista intermedia entre as operações e as máquinas \\
+\hline
+{\em id\+\_\+operation} & id da operação a ser removida \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_aecbfcb27cce073131bb676452f75ddf7}\label{functions_8c_aecbfcb27cce073131bb676452f75ddf7}} 
+\index{functions.c@{functions.c}!show\_connections@{show\_connections}}
+\index{show\_connections@{show\_connections}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{show\_connections()}{show\_connections()}}
+{\footnotesize\ttfamily void show\+\_\+connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections }\end{DoxyParamCaption})}
+
+
+
+Mostra todas as conexões da lista. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & Lista de conexões \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_a1e4733d691494de7101869b470436688}\label{functions_8c_a1e4733d691494de7101869b470436688}} 
+\index{functions.c@{functions.c}!show\_jobs@{show\_jobs}}
+\index{show\_jobs@{show\_jobs}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{show\_jobs()}{show\_jobs()}}
+{\footnotesize\ttfamily void show\+\_\+jobs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$}]{list\+\_\+jobs }\end{DoxyParamCaption})}
+
+
+
+Listagem dos jobs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+jobs} & Lista dos jobs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_a7ce0870bcb3aae4147241af5aa08f988}\label{functions_8c_a7ce0870bcb3aae4147241af5aa08f988}} 
+\index{functions.c@{functions.c}!show\_machines@{show\_machines}}
+\index{show\_machines@{show\_machines}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{show\_machines()}{show\_machines()}}
+{\footnotesize\ttfamily void show\+\_\+machines (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$}]{list\+\_\+machines }\end{DoxyParamCaption})}
+
+
+
+Listagem das máquinas na lista. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+machines} & Lista das máquinas \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_a1dd62439b60d5706aba6acef92754a92}\label{functions_8c_a1dd62439b60d5706aba6acef92754a92}} 
+\index{functions.c@{functions.c}!show\_machines\_by\_opjob\_id@{show\_machines\_by\_opjob\_id}}
+\index{show\_machines\_by\_opjob\_id@{show\_machines\_by\_opjob\_id}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{show\_machines\_by\_opjob\_id()}{show\_machines\_by\_opjob\_id()}}
+{\footnotesize\ttfamily void show\+\_\+machines\+\_\+by\+\_\+opjob\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+operation,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Mostra maquinas de uma operação de um job, pelo seu id de operação e id do job. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista de conexões \\
+\hline
+{\em id\+\_\+operation} & id da operação \\
+\hline
+{\em id\+\_\+job} & id do job \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_a1f1785850bee8961d115091f1a18ea30}\label{functions_8c_a1f1785850bee8961d115091f1a18ea30}} 
+\index{functions.c@{functions.c}!show\_operations\_by\_job@{show\_operations\_by\_job}}
+\index{show\_operations\_by\_job@{show\_operations\_by\_job}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{show\_operations\_by\_job()}{show\_operations\_by\_job()}}
+{\footnotesize\ttfamily void show\+\_\+operations\+\_\+by\+\_\+job (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections,  }\item[{int}]{id\+\_\+job }\end{DoxyParamCaption})}
+
+
+
+Mostra os ids das operacoes pertencentes a um job passado por id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & lista de conexões \\
+\hline
+{\em id\+\_\+job} & id do job \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{functions_8c_a0cefb94b386b506ad385c2391f36c22b}\label{functions_8c_a0cefb94b386b506ad385c2391f36c22b}} 
+\index{functions.c@{functions.c}!write\_connections@{write\_connections}}
+\index{write\_connections@{write\_connections}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{write\_connections()}{write\_connections()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$ write\+\_\+connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_aa42de17ec1f5968e85712280b063c3a1}{Connection}} $\ast$}]{list\+\_\+connections }\end{DoxyParamCaption})}
+
+
+
+Escrita do ficheiro connections.\+txt e armazenamento em memória. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+connections} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Connection$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_aeadcae57ded0f39448a5313f202654ca}\label{functions_8c_aeadcae57ded0f39448a5313f202654ca}} 
+\index{functions.c@{functions.c}!write\_jobs@{write\_jobs}}
+\index{write\_jobs@{write\_jobs}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{write\_jobs()}{write\_jobs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$ write\+\_\+jobs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_a58307f3e17689838a55decc226ed434c}{Job}} $\ast$}]{list\+\_\+jobs }\end{DoxyParamCaption})}
+
+
+
+Escrita do ficheiro opjobs.\+txt e armazenamento em memória. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+opjobs} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Op\+Job$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8c_accaaa8e679a7282545aff45b94cd11c0}\label{functions_8c_accaaa8e679a7282545aff45b94cd11c0}} 
+\index{functions.c@{functions.c}!write\_machines@{write\_machines}}
+\index{write\_machines@{write\_machines}!functions.c@{functions.c}}
+\doxysubsubsection{\texorpdfstring{write\_machines()}{write\_machines()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$ write\+\_\+machines (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs_8h_abbf3ebc6ae57768852c70da24dc4e0f9}{Machine}} $\ast$}]{list\+\_\+machines }\end{DoxyParamCaption})}
+
+
+
+Escrita do ficheiro machines.\+txt e armazenamento em memória. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+machines} & lista das maquinas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Machine$\ast$ 
+\end{DoxyReturn}

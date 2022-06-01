@@ -1,0 +1,59 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Data Structure Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Data Structures}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}File Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}File List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Data Structure Documentation}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Celula\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Plano Struct Reference}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{5}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}list\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}conection Struct Reference}{5}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Detailed Description}{6}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}list\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}job Struct Reference}{6}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Detailed Description}{6}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}list\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}machine Struct Reference}{6}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Detailed Description}{6}{subsection.3.4.1}%
+\contentsline {chapter}{\numberline {4}File Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}functions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c File Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{9}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{9}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}avg\_time()}{9}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}change\_operation()}{10}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}count\_op\_ids()}{10}{subsubsection.4.1.2.3}%
+\contentsline {subsubsection}{\numberline {4.1.2.4}exist\_connection()}{10}{subsubsection.4.1.2.4}%
+\contentsline {subsubsection}{\numberline {4.1.2.5}exist\_machine()}{11}{subsubsection.4.1.2.5}%
+\contentsline {subsubsection}{\numberline {4.1.2.6}exist\_operation()}{11}{subsubsection.4.1.2.6}%
+\contentsline {subsubsection}{\numberline {4.1.2.7}free\_connections()}{12}{subsubsection.4.1.2.7}%
+\contentsline {subsubsection}{\numberline {4.1.2.8}free\_jobs()}{12}{subsubsection.4.1.2.8}%
+\contentsline {subsubsection}{\numberline {4.1.2.9}free\_machines()}{12}{subsubsection.4.1.2.9}%
+\contentsline {subsubsection}{\numberline {4.1.2.10}get\_new\_job\_id()}{13}{subsubsection.4.1.2.10}%
+\contentsline {subsubsection}{\numberline {4.1.2.11}get\_new\_operation\_id()}{13}{subsubsection.4.1.2.11}%
+\contentsline {subsubsection}{\numberline {4.1.2.12}head\_insert\_connection()}{14}{subsubsection.4.1.2.12}%
+\contentsline {subsubsection}{\numberline {4.1.2.13}head\_insert\_job()}{14}{subsubsection.4.1.2.13}%
+\contentsline {subsubsection}{\numberline {4.1.2.14}head\_insert\_machine()}{14}{subsubsection.4.1.2.14}%
+\contentsline {subsubsection}{\numberline {4.1.2.15}insert\_operation()}{15}{subsubsection.4.1.2.15}%
+\contentsline {subsubsection}{\numberline {4.1.2.16}interface\_principal()}{15}{subsubsection.4.1.2.16}%
+\contentsline {subsubsection}{\numberline {4.1.2.17}max\_time()}{16}{subsubsection.4.1.2.17}%
+\contentsline {subsubsection}{\numberline {4.1.2.18}menu\_principal()}{16}{subsubsection.4.1.2.18}%
+\contentsline {subsubsection}{\numberline {4.1.2.19}min\_time()}{17}{subsubsection.4.1.2.19}%
+\contentsline {subsubsection}{\numberline {4.1.2.20}read\_connections()}{17}{subsubsection.4.1.2.20}%
+\contentsline {subsubsection}{\numberline {4.1.2.21}read\_jobs()}{17}{subsubsection.4.1.2.21}%
+\contentsline {subsubsection}{\numberline {4.1.2.22}read\_machines()}{18}{subsubsection.4.1.2.22}%
+\contentsline {subsubsection}{\numberline {4.1.2.23}remove\_job()}{18}{subsubsection.4.1.2.23}%
+\contentsline {subsubsection}{\numberline {4.1.2.24}remove\_operation()}{18}{subsubsection.4.1.2.24}%
+\contentsline {subsubsection}{\numberline {4.1.2.25}show\_connections()}{19}{subsubsection.4.1.2.25}%
+\contentsline {subsubsection}{\numberline {4.1.2.26}show\_jobs()}{19}{subsubsection.4.1.2.26}%
+\contentsline {subsubsection}{\numberline {4.1.2.27}show\_machines()}{19}{subsubsection.4.1.2.27}%
+\contentsline {subsubsection}{\numberline {4.1.2.28}show\_machines\_by\_opjob\_id()}{20}{subsubsection.4.1.2.28}%
+\contentsline {subsubsection}{\numberline {4.1.2.29}show\_operations\_by\_job()}{20}{subsubsection.4.1.2.29}%
+\contentsline {subsubsection}{\numberline {4.1.2.30}write\_connections()}{20}{subsubsection.4.1.2.30}%
+\contentsline {subsubsection}{\numberline {4.1.2.31}write\_jobs()}{21}{subsubsection.4.1.2.31}%
+\contentsline {subsubsection}{\numberline {4.1.2.32}write\_machines()}{21}{subsubsection.4.1.2.32}%
+\contentsline {section}{\numberline {4.2}functions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{21}{section.4.2}%
+\contentsline {section}{\numberline {4.3}main.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c File Reference}{22}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{23}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Function Documentation}{23}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}main()}{23}{subsubsection.4.3.2.1}%
+\contentsline {section}{\numberline {4.4}structs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h File Reference}{23}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{24}{subsection.4.4.1}%
+\contentsline {section}{\numberline {4.5}structs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{25}{section.4.5}%
+\contentsline {chapter}{Index}{27}{section*.9}%
