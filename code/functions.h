@@ -26,7 +26,7 @@ int exist_machine(Machine *list_machines, int id_machine);
 #pragma region OPERATIONS
 
 Connection *remove_operation(Connection *list_connections, int id_operation, int id_job);
-Connection *change_operation(Connection *list_connections, int id_operation, int id_job);
+Connection *change_operation(Connection *list_connections, int id_operation, int id_job, int id_machine, int new_time);
 Connection *insert_operation(Connection *list_connections, Machine *list_machines, int id_job);
 
 #pragma endregion
@@ -74,7 +74,6 @@ int count_op_ids(Connection *list_connections, int id_operation, int id_job);
 
 #pragma region GET
 
-int get_max_time(Connection *list_connections);
 int get_new_operation_id(Connection *list_connections, int id_job);
 int get_new_job_id(Job *list_jobs);
 
@@ -82,7 +81,7 @@ int get_new_job_id(Job *list_jobs);
 
 #pragma region SIMULATION
 
-int simulation(Connection **list_connections,Job **list_jobs, Operation **list_operations, Machine **list_machines);
+int simulation(Connection *list_connections);
 int Ocupa(int job, int oper, int maq, int t);
 
 #pragma endregion

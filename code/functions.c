@@ -454,28 +454,6 @@ int exist_connection(Connection *list_connections, int id_machine, int id_operat
 #pragma region GETS
 
 /**
- * @brief Busca o valor maximo para a variavel tempo na lista conexões
- *
- * @param list_macops lista conexões
- * @return int
- */
-int get_max_time(Connection *list_connections)
-{
-    int max = 0;
-
-    while (list_connections)
-    {
-        if (list_connections->time > max)
-        {
-            max = list_connections->time;
-        }
-        list_connections = list_connections->next;
-    }
-
-    return max;
-}
-
-/**
  * @brief Função para encontrar o próximo id da lista das conexões a ser usado por uma nova
  * operação a ser inserida na respetiva função
  *
@@ -776,18 +754,10 @@ Connection *remove_operation(Connection *list_connections, int id_operation, int
  * @param list_macops lista intermedia entre as operações e as máquinas
  * @param id_operation id da operação a ser alterada
  */
-Connection *change_operation(Connection *list_connections, int id_operation, int id_job)
+Connection *change_operation(Connection *list_connections, int id_operation, int id_job, int id_machine, int new_time)
 {
-    int id_machine, new_time;
     Connection *head_connection;
     head_connection = list_connections;
-
-    printf("Selecione a maquina a ser alterado o seu tempo:\n");
-    show_machines_by_opjob_id(list_connections, id_operation, id_job);
-    scanf("%d", &id_machine);
-
-    printf("\nInsira o novo tempo: ");
-    scanf("%d", &new_time);
 
     while (head_connection)
     {
@@ -960,7 +930,8 @@ Job *remove_job(Job *list_jobs, Connection **list_connections, int id_job)
 
 #pragma region SIMULATION
 
-int simulation(Connection **list_connections, Job **list_jobs, Operation **list_operations, Machine **list_machines)
+/**
+int simulation(Connection *list_connections)
 {
     // percorrer as listas
     // verificar se maquinas sáo iguais
@@ -970,11 +941,44 @@ int simulation(Connection **list_connections, Job **list_jobs, Operation **list_
     // se forem iguais -> ???
     // enviar dados para a celula plano
     // enviar tudo para html tabelar
+
+    int id_mac = 0, time;
+    CelulaPlano simulation[][];
+    Connection *head_connection, *head_connection2, *aux;
+
+    while (mac != get_last_mac())
+    {
+        head_connection = *list_connections;
+        while (head_connection)
+        {
+            if (head_connection->id_mac == id_mac)
+            {
+                head_connection2 = *list_connections;
+                time = head_connection->time;
+                while (head_connection2)
+                {
+                    if (head_connection->id_op == head_connection2->id_op && head_connection2->time < time)
+                    {
+                        aux = head_connection2;
+                    }
+
+                    head_connection2 = head_connection2->next;
+                }
+                simulation[aux->id_mac][t];
+
+            }
+
+            head_connection = head_connection->next;
+        }
+
+        id_mac++;
+    }
 }
 
 int Ocupa(int job, int oper, int maq, int t)
 {
 }
+**/
 
 #pragma endregion
 
@@ -990,8 +994,7 @@ void interface_principal()
     printf("        Menu Principal      \n");
     printf(" [1]-Visualizar Jobs\n [2]-Inserir Job\n [3]-Remover Job");
     printf("\n [4]-Inserir Operacao em Job\n [5]-Remover Operacao em Job\n [6]-Editar Operacao em Job");
-    printf("\n [7]-Tempo Minimo Job\n [8]-Tempo Maximo Job\n [9]-Media de Tempo (operacao)");
-    printf("\n [10]-Simular\n [11]-(ponto 9 TO DO)\n [0]- Sair\n");
+    printf("\n [7]-Tempo Minimo Job\n [8]-Tempo Maximo Job\n [9]-Media de Tempo (operacao)\n [0]- Sair\n");
     printf("----------------------\n");
     printf("\n-->");
 }
@@ -1080,14 +1083,23 @@ void menu_principal(Job **list_jobs, Machine **list_machines, Connection **list_
         case 6:
             system("cls");
             {
-                int id_job, id_operation;
+                int id_job, id_operation, id_machine, new_time;
                 show_jobs(*list_jobs);
                 printf("\nSelecione o id do job: ");
                 scanf("%d", &id_job);
+
                 show_operations_by_job(*list_connections, id_job);
                 printf("\nSelecione o id da operacao:");
                 scanf("%d", &id_operation);
-                *list_connections = change_operation(*list_connections, id_operation, id_job);
+
+                printf("Selecione a maquina a ser alterado o seu tempo:\n");
+                show_machines_by_opjob_id(*list_connections, id_operation, id_job);
+                scanf("%d", &id_machine);
+
+                printf("\nInsira o novo tempo: ");
+                scanf("%d", &new_time);
+
+                *list_connections = change_operation(*list_connections, id_operation, id_job, id_machine, new_time);
                 system("pause");
             }
             system("cls");
@@ -1130,24 +1142,6 @@ void menu_principal(Job **list_jobs, Machine **list_machines, Connection **list_
                 printf("\nSelecione o id da operacao: ");
                 scanf("%d", &id_operation);
                 printf("\nMedia de tempo (Job %d / Operacao %d): %.2f\n", id_job, id_operation, avg_time(*list_connections, id_operation, id_job));
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        case 10:
-            system("cls");
-            {
-                // Simular
-                system("pause");
-            }
-            system("cls");
-            break;
-
-        case 11:
-            system("cls");
-            {
-                // (ponto 9 TO DO)
                 system("pause");
             }
             system("cls");
